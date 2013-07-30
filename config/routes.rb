@@ -1,5 +1,8 @@
 RiskAssessmentApp::Application.routes.draw do
   
+  resources :periods
+
+
   root :to =>'risks#index'
   
   resources :risks

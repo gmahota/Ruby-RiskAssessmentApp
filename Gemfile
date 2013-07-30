@@ -32,6 +32,8 @@ gem 'authlogic'
 gem 'cancan'
 gem "paperclip", "~> 3.0"
 
+
+gem 'nested_form'
 gem 'execjs'
 
 #group :production do

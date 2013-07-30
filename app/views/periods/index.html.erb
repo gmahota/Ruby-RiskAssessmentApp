@@ -1,23 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1>Listing periods</h1>
 
-<p>
-  <b>Description:</b>
-  <%= @risk.description %>
-</p>
-
-<p>
-  <b>Location:</b>
-  <%= @risk.location_id %>
-</p>
-
-<p>
-  <b>Type:</b>
-  <%= @risk.type_id %>
-</p>
-
-<h3>Periods</h3>
-
-<table class="table">
+<table>
   <tr>
     <th>From date</th>
     <th>To date</th>
@@ -41,8 +24,6 @@
 <% end %>
 </table>
 
+<br />
 
-<%= link_to 'Edit', edit_risk_path(@risk) %> |
-<%= link_to 'Back', risks_path %>
-
-
+<%= link_to 'New Period', new_period_path %>

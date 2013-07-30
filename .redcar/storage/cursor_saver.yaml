@@ -1,4 +1,6 @@
 --- 
-cursor_positions: []
-
+cursor_positions: 
+  - :path: db/migrate/20130729143857_create_types.rb
+    :cursor_offset: 0
+    :timestamp: 2013-07-29 16:38:57 +02:00
 files_to_retain: 0

@@ -14,6 +14,8 @@ class RisksController < ApplicationController
   # GET /risks/1.json
   def show
     @risk = Risk.find(params[:id])
+     
+    @periods = Period.where(:risk_id => @risk.id)
 
     respond_to do |format|
       format.html # show.html.erb
