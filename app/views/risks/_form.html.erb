@@ -1,0 +1,47 @@
+<%= form_for(@risk) do |f| %>
+  <% if @risk.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@risk.errors.count, "error") %> prohibited this risk from being saved:</h2>
+
+      <ul>
+      <% @risk.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= select("risk", "location_id", Location.all.collect{|p| [p.name,p.id]})%>
+    <%= f.label :location_id %><br />
+   
+  </div>
+  <div class="field">
+    <%= select("risk", "type_id", Type.all.collect{|p| [p.name,p.id]})%>
+    <%= f.label :type_id %><br />
+   
+  </div>
+  <div class="field">
+    <%= f.label :from_date %><br />
+    <%= f.date_select :from_date %>
+  </div>
+  <div class="field">
+    <%= f.label :to_date %><br />
+    <%= f.date_select :to_date %>
+  </div>
+  <div class="field">
+    <%= f.label :from_time %><br />
+    <%= f.time_select :from_time %>
+  </div>
+  <div class="field">
+    <%= f.label :to_time %><br />
+    <%= f.time_select :to_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
