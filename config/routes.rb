@@ -1,5 +1,10 @@
 RiskAssessmentApp::Application.routes.draw do
   
+  get "user_sessions/new"
+
+  resources :users
+
+
   resources :periods
 
 
@@ -17,6 +22,14 @@ RiskAssessmentApp::Application.routes.draw do
     resources :risks
   end
 
+  resources :risks do
+    resources :periods
+  end
+  
+  
+  resources :user_sessions
+          get 'login', to: 'user_sessions#new'
+          get 'logout', to: 'user_sessions#destroy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

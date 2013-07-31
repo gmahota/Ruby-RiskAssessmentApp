@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130730144647) do
+ActiveRecord::Schema.define(:version => 20130731150251) do
 
   create_table "locations", :force => true do |t|
     t.string   "name"
@@ -36,14 +36,29 @@ ActiveRecord::Schema.define(:version => 20130730144647) do
     t.string   "description"
     t.integer  "location_id"
     t.integer  "type_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "doc_file_name"
+    t.string   "doc_content_type"
+    t.integer  "doc_file_size"
+    t.datetime "doc_updated_at"
   end
 
   create_table "types", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "username"
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
 end

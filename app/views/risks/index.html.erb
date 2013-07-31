@@ -1,5 +1,11 @@
 <h1>Listing risks</h1>
 
+<%= form_tag risks_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :description => nil %>
+<% end %>
+
 <table>
   <tr>
     <th>Description</th>
@@ -14,8 +20,8 @@
 <% @risks.each do |risk| %>
   <tr>
     <td><%= risk.description %></td>
-    <td><%= risk.location_id %></td>
-    <td><%= risk.type_id %></td>
+    <td><%= risk.location.name %></td>
+    <td><%= risk.type.name %></td>
     
     <td><%= link_to 'Show', risk %></td>
     <td><%= link_to 'Edit', edit_risk_path(risk) %></td>
@@ -24,6 +30,7 @@
 <% end %>
 </table>
 
+<%= will_paginate @risks %>
 <br />
 
 <%= link_to 'New Risk', new_risk_path %>

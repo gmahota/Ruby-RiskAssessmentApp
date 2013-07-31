@@ -2,14 +2,6 @@
 
 <%= render 'form' %>
 
-<%= nested_form_for @risk do |f| %>
-<%= f.fields_for :periods do |period_form| %>
-  <%= task_form.text_field :name %>
-  <%= task_form.link_to_remove "Remove this task" %>
-<% end %>
-<p><%= f.link_to_add "Add a task", :tasks %></p>
-
-
 
 <%= link_to 'Show', @risk %> |
 <%= link_to 'Back', risks_path %> |

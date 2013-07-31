@@ -1,9 +1,19 @@
 class RisksController < ApplicationController
+    
   # GET /risks
   # GET /risks.json
   def index
-    @risks = Risk.all
-
+   
+    @search = Risk.search do
+    fulltext params[:search] 
+    #with(:location, "Beira")
+  end
+  @risks = @search.results
+    
+  
+  
+    #@risks = Risk.all
+    @risks = Risk.paginate(:page => params[:page], :per_page => 3)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @risks }
