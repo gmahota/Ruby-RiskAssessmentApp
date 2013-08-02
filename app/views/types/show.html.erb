@@ -1,35 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @type.name %>
+  <h3><b>Name:</b>
+  <%= @type.name %></h3>
 </p>
 
 <h3>Risks</h3>
 
-<table class="table">
-  <tr>
-    <th>Description</th>
-    <th>Location</th>
-    <th>Type</th>
+<%= render :partial => "risks/table", :locals => {:risks => @type.risks }%>
 
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<h3>Create a new Fload</h3>
 
-<% @risks.each do |risk| %>
-  <tr>
-    <td><%= risk.description %></td>
-    <td><%= risk.location.name %></td>
-    <td><%= risk.type.name %></td>
-    
-    <td><%= link_to 'Show', risk %></td>
-    <td><%= link_to 'Edit', edit_risk_path(risk) %></td>
-    <td><%= link_to 'Destroy', risk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+<%= render :partial => "risks/form"%>
 
 
 <%= link_to 'Edit', edit_type_path(@type) %> |

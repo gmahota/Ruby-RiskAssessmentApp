@@ -16,10 +16,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="#">Risk Assessment</a>
+      <a class="brand" href="#">RiMa</a>
       <div class="nav-collapse">
         <ul class="nav">
-          <li><%= link_to "Inicio", root_path %></li>
+          <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Locations", locations_path %></li> 
            <li><%= link_to "Types", types_path %></li> 
          
@@ -99,11 +99,32 @@
 
  <%= yield %></div>
     <div class="span3">
-     
+      <div class="thumbnail">
+        <%= image_tag "rima.jpg" %>
+   
+      <div class="caption">
+        <h4>Risk Management</h4>
+        <p>The application will help the Emergency Dept. simplify the
+management of the risk register, possibly enabling forms of
+online collaboration. In the long term, integration with other systems will simplify
+monitoring and alerting
+
+</p>
+        
+      </div>
+    </div>
     </div>
   </div>
 </div>
+</br></br></br>
+<!-- Footer
+    ================================================== -->
+    <footer class="bs-footer">
+      <center>Rima develoved by Timóteo Júnior and Guimarães Júnior for the SSOR13</center>
+      
+    </footer>
 
 
 </body>
+
 </html>

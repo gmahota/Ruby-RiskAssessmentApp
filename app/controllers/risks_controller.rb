@@ -1,19 +1,35 @@
 class RisksController < ApplicationController
     
+   
+  
   # GET /risks
   # GET /risks.json
   def index
-   
-    @search = Risk.search do
-    fulltext params[:search] 
-    #with(:location, "Beira")
-  end
-  @risks = @search.results
     
+     @risks = Risk.search(params[:search_term],
+                         params[:selected_type],
+                         params[:selected_location])
+      .paginate(:page => params[:page])
+    @risk = Risk.new
+   #@risks = Risk.search(params[:search_term])
+    
+    #@search = Risk.search do
+    #fulltext params[:search] 
+    #paginate :page => 1, :per_page => 2
+    #with(:location, "Beira")
+  #end
+  #@risks = @search.results
+  #@types = Type.all
   
+  #@periods = Period.where( {:from_date => params[:from_date], :to_date => params[:to_date]})
   
+  #@periods do |p|
+    #@risks.add(Risk.find(p.risk_id))
+  #end
+    
+    
     #@risks = Risk.all
-    @risks = Risk.paginate(:page => params[:page], :per_page => 3)
+    #@risks = Risk.paginate(:page => params[:page], :per_page => 3)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @risks }

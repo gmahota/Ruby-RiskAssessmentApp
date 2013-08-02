@@ -1,3 +1,9 @@
 --- 
-open_files: []
-
+open_files: 
+  - app/controllers/risks_controller.rb
+  - app/views/risks/_form.html.erb
+  - app/views/periods/_form.html.erb
+  - app/views/periods/index.html.erb
+  - app/controllers/periods_controller.rb
+  - app/assets/javascripts/application.js
+  - app/views/risks/index.html.erb

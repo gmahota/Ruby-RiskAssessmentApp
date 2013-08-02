@@ -1,36 +1,43 @@
-<h1>Listing risks</h1>
-
-<%= form_tag risks_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :description => nil %>
+</br>
+<fieldset>
+  <legend>Search</legend>
+  
+        <%= form_tag risks_url, :method => :get, :class => "form-search" do %>
+  <%= text_field_tag :search_term, params[:search_term], 
+      :class => "input-medium", 
+      :placeholder => "Description" %>
+       <%= submit_tag "Search", :class => "btn" %>
 <% end %>
 
-<table>
-  <tr>
-    <th>Description</th>
-    <th>Location</th>
-    <th>Type</th>
-
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @risks.each do |risk| %>
-  <tr>
-    <td><%= risk.description %></td>
-    <td><%= risk.location.name %></td>
-    <td><%= risk.type.name %></td>
+      
     
-    <td><%= link_to 'Show', risk %></td>
-    <td><%= link_to 'Edit', edit_risk_path(risk) %></td>
-    <td><%= link_to 'Destroy', risk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+      
+        <%= form_tag risks_url, :method => :get, :class => "form-search" do %>
+  <%= select_tag "selected_type", 
+      options_from_collection_for_select(Type.all, "id", "name") %>
+       <%= submit_tag "Search", :class => "btn" %>
 <% end %>
-</table>
 
-<%= will_paginate @risks %>
-<br />
+        <%= form_tag risks_url, :method => :get, :class => "form-search" do %>
+  <%= select_tag "selected_location", 
+      options_from_collection_for_select(Location.all, "id", "name") %>
+       <%= submit_tag "Search", :class => "btn" %>
+<% end %>
 
-<%= link_to 'New Risk', new_risk_path %>
+  
+
+</fieldset>
+
+<fieldset>
+  <legend>Listing Risks</legend>
+<p>
+  <%= link_to 'New Risk', new_risk_path, class: "btn btn-primary" %>
+</p>
+<%= render :partial => "table", :locals => {:risks => @risks }%>
+
+
+<center>
+  <%= will_paginate @risks %>
+</center>
+<fieldset>
+

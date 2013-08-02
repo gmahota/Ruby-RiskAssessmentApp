@@ -2,8 +2,10 @@ class PeriodsController < ApplicationController
   # GET /periods
   # GET /periods.json
   def index
-    @periods = Period.all
-
+    #@periods = Period.all
+  
+   @periods = Period.where(:from_date => params[:from_date]..params[:to_date] )
+  
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @periods }

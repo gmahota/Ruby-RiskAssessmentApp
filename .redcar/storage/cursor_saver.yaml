@@ -15,9 +15,6 @@ cursor_positions:
   - :path: db/migrate/20130731100643_create_users.rb
     :cursor_offset: 0
     :timestamp: 2013-07-31 12:06:43 +02:00
-  - :path: app/views/types/_form.html.erb
-    :cursor_offset: 363
-    :timestamp: 2013-07-31 11:59:04 +02:00
   - :path: app/views/locations/_form.html.erb
     :cursor_offset: 444
     :timestamp: 2013-07-31 11:58:06 +02:00
@@ -29,26 +26,6 @@ cursor_positions:
   - :path: Gemfile
     :cursor_offset: 209
     :timestamp: 2013-07-31 15:01:20 +02:00
-  - :path: app/views/risks/edit.html.erb
-    :cursor_offset: 45
-    :timestamp: 2013-07-31 14:37:19 +02:00
-    :selection_offset: 76
-    :block_selection_mode: false
-  - :path: app/assets/stylesheets/application.css
-    :cursor_offset: 585
-    :timestamp: 2013-07-31 14:23:28 +02:00
-  - :path: app/assets/javascripts/application.js
-    :cursor_offset: 893
-    :timestamp: 2013-07-31 14:31:37 +02:00
-  - :path: app/views/risks/_form.html.erb
-    :cursor_offset: 608
-    :timestamp: 2013-07-31 14:48:25 +02:00
-  - :path: app/controllers/risks_controller.rb
-    :cursor_offset: 167
-    :timestamp: 2013-07-31 15:38:40 +02:00
-  - :path: app/views/risks/index.html.erb
-    :cursor_offset: 460
-    :timestamp: 2013-07-31 15:27:06 +02:00
   - :path: app/models/ability.rb
     :cursor_offset: 64
     :timestamp: 2013-07-31 12:49:48 +02:00
@@ -70,14 +47,6 @@ cursor_positions:
   - :path: app/models/user_session.rb
     :cursor_offset: 50
     :timestamp: 2013-07-31 12:34:27 +02:00
-  - :path: app/views/risks/show.html.erb
-    :cursor_offset: 0
-    :timestamp: 2013-07-30 17:01:28 +02:00
-  - :path: app/views/periods/_form.html.erb
-    :cursor_offset: 516
-    :timestamp: 2013-07-30 16:40:59 +02:00
-    :selection_offset: 527
-    :block_selection_mode: false
   - :path: app/models/location.rb
     :cursor_offset: 113
     :timestamp: 2013-07-31 14:57:01 +02:00
@@ -86,12 +55,66 @@ cursor_positions:
   - :path: app/models/period.rb
     :cursor_offset: 0
     :timestamp: 2013-07-30 16:50:06 +02:00
-  - :path: app/models/risk.rb
-    :cursor_offset: 318
-    :timestamp: 2013-07-31 15:25:27 +02:00
-    :selection_offset: 310
-    :block_selection_mode: false
   - :path: app/controllers/application_controller.rb
     :cursor_offset: 374
     :timestamp: 2013-07-31 12:26:36 +02:00
+  - :path: app/models/risk.rb
+    :cursor_offset: 394
+    :timestamp: 2013-08-01 11:44:28 +02:00
+  - :path: app/assets/stylesheets/periods.css.scss
+    :cursor_offset: 0
+    :timestamp: 2013-07-30 16:40:59 +02:00
+  - :path: app/assets/stylesheets/application.css
+    :cursor_offset: 585
+    :timestamp: 2013-07-31 14:23:28 +02:00
+  - :path: app/assets/javascripts/risks.js.coffee
+    :cursor_offset: 230
+    :timestamp: 2013-08-01 12:16:39 +02:00
+  - :path: app/assets/javascripts/periods.js.coffee
+    :cursor_offset: 271
+    :timestamp: 2013-08-01 12:16:03 +02:00
+  - :path: app/assets/javascripts/application.js
+    :cursor_offset: 916
+    :timestamp: 2013-08-01 12:16:52 +02:00
+  - :path: app/views/risks/_form.html.erb
+    :cursor_offset: 1079
+    :timestamp: 2013-08-01 15:18:49 +02:00
+  - :path: app/controllers/risks_controller.rb
+    :cursor_offset: 271
+    :timestamp: 2013-08-01 12:26:33 +02:00
+  - :path: app/views/periods/_form.html.erb
+    :cursor_offset: 461
+    :timestamp: 2013-08-01 12:12:54 +02:00
+    :selection_offset: 436
+    :block_selection_mode: false
+  - :path: app/views/periods/index.html.erb
+    :cursor_offset: 184
+    :timestamp: 2013-08-01 12:22:37 +02:00
+  - :path: app/controllers/periods_controller.rb
+    :cursor_offset: 220
+    :timestamp: 2013-08-01 11:48:40 +02:00
+  - :path: app/views/risks/index.html.erb
+    :cursor_offset: 299
+    :timestamp: 2013-08-01 14:58:25 +02:00
+  - :path: app/views/risks/_table.html.erb
+    :cursor_offset: 519
+    :timestamp: 2013-08-01 15:01:36 +02:00
+  - :path: app/controllers/types_controller.rb
+    :cursor_offset: 369
+    :timestamp: 2013-08-01 15:06:38 +02:00
+  - :path: app/views/types/show.html.erb
+    :cursor_offset: 44
+    :timestamp: 2013-08-01 15:10:47 +02:00
+  - :path: app/views/risks/show.html.erb
+    :cursor_offset: 0
+    :timestamp: 2013-07-31 17:15:46 +02:00
+  - :path: app/views/risks/new.html.erb
+    :cursor_offset: 0
+    :timestamp: 2013-07-29 16:42:57 +02:00
+  - :path: app/views/types/_form.html.erb
+    :cursor_offset: 363
+    :timestamp: 2013-07-31 11:59:04 +02:00
+  - :path: app/views/risks/edit.html.erb
+    :cursor_offset: 143
+    :timestamp: 2013-07-31 14:37:19 +02:00
 files_to_retain: 0

@@ -14,8 +14,10 @@ class TypesController < ApplicationController
   # GET /types/1.json
   def show
     @type = Type.find(params[:id])
+    @risk = Risk.new
+    @risk.type_id = @type.id
     
-     @risks = Risk.where(:type_id => @type.id)
+    #@risks = @type.risks
 
     respond_to do |format|
       format.html # show.html.erb

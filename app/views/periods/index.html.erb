@@ -1,6 +1,15 @@
 <h1>Listing periods</h1>
+<%= form_tag periods_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :from_date, params[:from_date],  :class => 'datepicker' %>
+    <%= text_field_tag :to_date, params[:to_date],  :class => 'datepicker' %>
+    <%= submit_tag "Search", :from_date => nil %>
+  </p>
+<% end %>
 
-<table>
+
+
+<table class='table'>
   <tr>
     <th>From date</th>
     <th>To date</th>

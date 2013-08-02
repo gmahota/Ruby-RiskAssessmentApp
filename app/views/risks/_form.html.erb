@@ -22,8 +22,8 @@
 
 <%= simple_nested_form_for @risk do |f| %>
 <%= f.fields_for :periods do |period_form| %>
-  <%= period_form.date_select :from_date, class: "datex"  %>
-  <%= period_form.date_select :to_date %>
+  <%= period_form.date_select :from_date,  :class => 'datepicker' %>
+  <%= period_form.date_select :to_date, class: "datepicker" %>
   <%= period_form.time_select :from_time %>
   <%= period_form.time_select :to_time %>
   <%= period_form.link_to_remove "Remove this period" %>
@@ -32,7 +32,5 @@
 <% end %>
 
 
-
-  
   
 <% end %>

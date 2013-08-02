@@ -20,6 +20,5 @@
 //= require_tree .
 
 
-$(function(){
-$('#datex').datepicker()
-});
+jQuery ->
+  $('.datepicker').datepicker()

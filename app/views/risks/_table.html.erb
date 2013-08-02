@@ -1,0 +1,20 @@
+<table class='table'>
+  <tr>
+    <th>Description</th>
+    <th>Location</th>
+    <th>Type</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% risks.each do |risk| %>
+  <tr>
+    <td><%= link_to risk.description, risk_path(risk)  %></td>
+    <td><%= risk.location.name %></td>
+    <td><%= risk.type.name %></td>
+    <td><%= link_to 'Edit', edit_risk_path(risk), class: "btn btn-small"  %>
+    <%= link_to 'Destroy', risk, class: "btn btn-small btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
