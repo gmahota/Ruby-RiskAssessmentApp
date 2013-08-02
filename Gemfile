@@ -11,7 +11,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '0.12.2'
 end
 
 # Gems used only for assets and not required
@@ -23,7 +23,7 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   
   gem 'therubyracer', :platforms => :ruby
-  gem 'less-rails-bootstrap'
+  
 
  
   
@@ -33,7 +33,7 @@ end
 gem 'jquery-rails'
 
  gem 'simple_form'
-
+gem 'less-rails-bootstrap'
 gem 'authlogic'
 gem 'cancan'
 gem "paperclip", "~> 3.0"
