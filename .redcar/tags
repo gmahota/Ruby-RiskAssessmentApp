@@ -1,4 +1,4 @@
-1375453260
+1375456064
 Ability	/home/timoteo/ssror13/RiskAssessmentApp/app/models/ability.rb	class Ability
 AddAtachmentToRisk	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130731150251_add_atachment_to_risk.rb	class AddAtachmentToRisk 
 AddCollumnPeriodidOnRisks	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130730144236_add_collumn_periodid_on_risks.rb	class AddCollumnPeriodidOnRisks 
