@@ -12,9 +12,6 @@ cursor_positions:
   - :path: app/views/users/_form.html.erb
     :cursor_offset: 250
     :timestamp: 2013-07-31 12:08:38 +02:00
-  - :path: db/migrate/20130731100643_create_users.rb
-    :cursor_offset: 0
-    :timestamp: 2013-07-31 12:06:43 +02:00
   - :path: app/views/locations/_form.html.erb
     :cursor_offset: 444
     :timestamp: 2013-07-31 11:58:06 +02:00
@@ -117,4 +114,22 @@ cursor_positions:
   - :path: app/views/risks/edit.html.erb
     :cursor_offset: 143
     :timestamp: 2013-07-31 14:37:19 +02:00
+  - :path: app/assets/stylesheets/scaffolds.css.scss
+    :cursor_offset: 0
+    :timestamp: 2013-07-29 16:38:57 +02:00
+  - :path: db/migrate/20130805145750_add_impact_and_probability_to_period.rb
+    :cursor_offset: 160
+    :timestamp: 2013-08-05 16:59:17 +02:00
+  - :path: db/migrate/20130730144647_rectify_relationship_between_risk_and_period.rb
+    :cursor_offset: 190
+    :timestamp: 2013-07-30 16:48:47 +02:00
+  - :path: db/migrate/20130731100643_create_users.rb
+    :cursor_offset: 0
+    :timestamp: 2013-07-31 12:06:43 +02:00
+  - :path: db/migrate/20130731150251_add_atachment_to_risk.rb
+    :cursor_offset: 0
+    :timestamp: 2013-07-31 17:03:50 +02:00
+  - :path: db/migrate/20130805144644_create_probabilities.rb
+    :cursor_offset: 0
+    :timestamp: 2013-08-05 16:46:44 +02:00
 files_to_retain: 0

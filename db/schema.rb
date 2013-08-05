@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130731150251) do
+ActiveRecord::Schema.define(:version => 20130805152238) do
+
+  create_table "classifications", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "impacts", :force => true do |t|
+    t.string   "name"
+    t.float    "value"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "classification_id"
+  end
 
   create_table "locations", :force => true do |t|
     t.string   "name"
@@ -27,9 +41,18 @@ ActiveRecord::Schema.define(:version => 20130731150251) do
     t.date     "to_date"
     t.time     "from_time"
     t.time     "to_time"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "risk_id"
+    t.integer  "impact_id"
+    t.integer  "probability_id"
+  end
+
+  create_table "probabilities", :force => true do |t|
+    t.string   "name"
+    t.float    "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "risk_id"
   end
 
   create_table "risks", :force => true do |t|

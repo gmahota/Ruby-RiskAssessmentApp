@@ -1,5 +1,14 @@
 RiskAssessmentApp::Application.routes.draw do
   
+  resources :classifications
+
+
+  resources :impacts
+
+
+  resources :probabilities
+
+
   get "user_sessions/new"
 
   resources :users

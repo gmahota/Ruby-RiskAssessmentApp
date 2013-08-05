@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @impact.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @impact.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_impact_path(@impact) %> |
+<%= link_to 'Back', impacts_path %>
