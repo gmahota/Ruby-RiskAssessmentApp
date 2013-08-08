@@ -31,10 +31,16 @@ class RisksController < ApplicationController
                     answer_type_id: AnswerType.find(id).id,
                     value: AnswerType.find(id).value
         )
+      
+      
+        
     end
     
 
-    format.html { render action: "index" }
+    respond_to do |format|
+      format.html { redirect_to action: "index", notice: 'Impact successfully Created.' }
+      format.json { head :no_content }
+    end
    
     
     
