@@ -13,3 +13,24 @@
 
 <%= link_to 'Edit', edit_impact_path(@impact) %> |
 <%= link_to 'Back', impacts_path %>
+
+<h2>Listing Answers</h2>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @answer_types.each do |answer_type| %>
+  <tr>
+    <td><%= answer_type.name %></td>
+    <td><%= answer_type.value %></td>
+    <td><%= link_to 'Show', answer_type %></td>
+    <td><%= link_to 'Edit', edit_answer_type_path(answer_type), class: "btn btn-small" %>
+    <%= link_to 'Destroy', answer_type, class: "btn btn-small btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

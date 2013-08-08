@@ -7,7 +7,7 @@ gem 'rails', '3.2.13'
 
 group :development do
   gem 'sqlite3', '1.3.5'
-  gem 'sunspot_solr'
+  #gem 'sunspot_solr'
 end
 
 group :production do
@@ -46,7 +46,7 @@ gem 'will_paginate', '~> 3.0'
 
 gem 'bootstrap-datepicker-rails'
 
-gem 'sunspot_rails'
+#gem 'sunspot_rails'
 #group :production do
 #    gem 'pg', '0.12.2'
 #end

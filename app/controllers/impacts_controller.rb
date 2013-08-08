@@ -15,6 +15,8 @@ class ImpactsController < ApplicationController
   def show
     @impact = Impact.find(params[:id])
 
+    @answer_types = AnswerType.where(:impact_id => @impact.id)
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @impact }

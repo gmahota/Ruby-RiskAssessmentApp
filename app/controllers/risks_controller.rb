@@ -1,6 +1,45 @@
 class RisksController < ApplicationController
     
+  def matrix
+    @periods = Period.all
+  end
+  
+  
+   def register
+      @risks = Risk.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @locations }
+    end
+   end
+
+   def impact
+     puts "-"*50
+    puts params[:risk]
+    #@risk = Risk.find params[:id]
+    @period = Period.find params[:period_id]
+    
+    ids = params[:answers]
+    impacts = params[:impacts]
+    
+    Impact.all.each do |x|
+      id = ids.shift.to_i
+      imp =impacts.shift.to_i
+      Answer.create(period_id: @period.id,
+                    impact_id: Impact.find(imp).id,
+                    answer_type_id: AnswerType.find(id).id,
+                    value: AnswerType.find(id).value
+        )
+    end
+    
+
+    format.html { render action: "index" }
    
+    
+    
+    
+   end
   
   # GET /risks
   # GET /risks.json
@@ -11,25 +50,7 @@ class RisksController < ApplicationController
                          params[:selected_location])
       .paginate(:page => params[:page])
     @risk = Risk.new
-   #@risks = Risk.search(params[:search_term])
-    
-    #@search = Risk.search do
-    #fulltext params[:search] 
-    #paginate :page => 1, :per_page => 2
-    #with(:location, "Beira")
-  #end
-  #@risks = @search.results
-  #@types = Type.all
-  
-  #@periods = Period.where( {:from_date => params[:from_date], :to_date => params[:to_date]})
-  
-  #@periods do |p|
-    #@risks.add(Risk.find(p.risk_id))
-  #end
-    
-    
-    #@risks = Risk.all
-    #@risks = Risk.paginate(:page => params[:page], :per_page => 3)
+   
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @risks }
@@ -68,10 +89,12 @@ class RisksController < ApplicationController
   # POST /risks
   # POST /risks.json
   def create
+    
     @risk = Risk.new(params[:risk])
-
+    puts "-"*20
+    puts params[:risk]
     respond_to do |format|
-      if @risk.save
+    if @risk.save
         format.html { redirect_to @risk, notice: 'Risk was successfully created.' }
         format.json { render json: @risk, status: :created, location: @risk }
       else
@@ -108,4 +131,6 @@ class RisksController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
 end

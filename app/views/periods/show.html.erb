@@ -12,14 +12,44 @@
 
 <p>
   <b>From time:</b>
-  <%= @period.from_time %>
+  <%= @period.from_time.strftime('%H:%M:%S') %>
 </p>
 
 <p>
   <b>To time:</b>
-  <%= @period.to_time %>
+  <%= @period.to_time.strftime('%H:%M:%S') %>
+</p>
+
+<p>
+  <b>Probability:</b>
+  <%= @period.probability.name %>
 </p>
 
 
 <%= link_to 'Edit', edit_period_path(@period) %> |
 <%= link_to 'Back', periods_path %>
+
+
+<h1>Listing answers</h1>
+
+<table class="table">
+  <tr>
+
+    <th>Answer type</th>
+    <th>Impact</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @answers.each do |answer| %>
+  <tr>
+   
+    <td><%= AnswerType.find(answer.answer_type_id).name %></td>
+    <td><%= answer.impact.name %></td>
+    <td><%= link_to 'Show', answer %></td>
+    <td><%= link_to 'Edit', class: "btn btn-small", edit_answer_path(answer) %></td>
+    <td><%= link_to 'Destroy', answer, class: "btn btn-small btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

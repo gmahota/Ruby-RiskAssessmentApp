@@ -24,11 +24,11 @@
   <tr>
     <td><%= period.from_date %></td>
     <td><%= period.to_date %></td>
-    <td><%= period.from_time %></td>
-    <td><%= period.to_time %></td>
+    <td><%= period.from_time.strftime('%H:%M:%S') %></td>
+    <td><%= period.to_time.strftime('%H:%M:%S') %></td>
     <td><%= link_to 'Show', period %></td>
-    <td><%= link_to 'Edit', edit_period_path(period) %></td>
-    <td><%= link_to 'Destroy', period, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Edit', edit_period_path(period), class: "btn btn-small" %></td>
+    <td><%= link_to 'Destroy', period, class: "btn btn-small btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

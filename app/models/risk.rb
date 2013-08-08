@@ -11,22 +11,7 @@ class Risk < ActiveRecord::Base
   
   has_attached_file :doc
   
-  searchable do
-    text :description
     
-    #text :periods do
-    #  periods.map(:risks)
-   # end
-    
-    
-    text :location do
-      location.name.downcase if location = self.location
-    end
-    
-    
-  end
-  
-  
    self.per_page = 3
 
   def self.search(description, type_id, loc_id)

@@ -1,12 +1,12 @@
 <h1>Listing probabilities</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Name</th>
     <th>Value</th>
     <th></th>
     <th></th>
-    <th></th>
+    
   </tr>
 
 <% @probabilities.each do |probability| %>
@@ -14,8 +14,8 @@
     <td><%= probability.name %></td>
     <td><%= probability.value %></td>
     <td><%= link_to 'Show', probability %></td>
-    <td><%= link_to 'Edit', edit_probability_path(probability) %></td>
-    <td><%= link_to 'Destroy', probability, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Edit', edit_probability_path(probability), class: "btn btn-small" %>
+    <%= link_to 'Destroy', probability, class: "btn btn-small btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
@@ -23,3 +23,4 @@
 <br />
 
 <%= link_to 'New Probability', new_probability_path %>
+

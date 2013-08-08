@@ -1,0 +1,27 @@
+<h1>Listing answer_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th>Impact</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @answer_types.each do |answer_type| %>
+  <tr>
+    <td><%= answer_type.name %></td>
+    <td><%= answer_type.value %></td>
+    <td><%= answer_type.impact_id %></td>
+    <td><%= link_to 'Show', answer_type %></td>
+    <td><%= link_to 'Edit', edit_answer_type_path(answer_type) %></td>
+    <td><%= link_to 'Destroy', answer_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Answer type', new_answer_type_path %>

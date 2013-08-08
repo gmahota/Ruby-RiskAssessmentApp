@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805152238) do
+ActiveRecord::Schema.define(:version => 20130808091351) do
+
+  create_table "answer_types", :force => true do |t|
+    t.string   "name"
+    t.integer  "value"
+    t.integer  "impact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "answers", :force => true do |t|
+    t.integer  "period_id"
+    t.integer  "answer_type_id"
+    t.integer  "impact_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "value"
+  end
 
   create_table "classifications", :force => true do |t|
     t.string   "name"
@@ -22,9 +39,8 @@ ActiveRecord::Schema.define(:version => 20130805152238) do
   create_table "impacts", :force => true do |t|
     t.string   "name"
     t.float    "value"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.integer  "classification_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "locations", :force => true do |t|
@@ -44,7 +60,6 @@ ActiveRecord::Schema.define(:version => 20130805152238) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "risk_id"
-    t.integer  "impact_id"
     t.integer  "probability_id"
   end
 

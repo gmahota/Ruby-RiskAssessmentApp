@@ -38,11 +38,21 @@
   <tr>
     <td><%= period.from_date %></td>
     <td><%= period.to_date %></td>
-    <td><%= period.from_time %></td>
-    <td><%= period.to_time %></td>
-    <td><%= link_to 'Show', period %></td>
-    <td><%= link_to 'Edit', edit_period_path(period) %></td>
-    <td><%= link_to 'Destroy', period, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= period.from_time.strftime('%H:%M:%S') %></td>
+    <td><%= period.to_time.strftime('%H:%M:%S') %></td>
+    <td><%= link_to 'Show', period , class: "btn btn-small"%>
+     
+
+<a href="#impact_modal" data-toggle="modal" data-period="<%=period.id%>" class="btn btn-small">Impacts</a>
+
+     <!-- 
+      <%= link_to "ola",
+      { :controller => :risks, :action => :impact, :id  => @risk.id, :period_id => period.id  },
+      { :remote => true } %>
+      
+    -->
+    <%= link_to 'Edit', edit_period_path(period), class: "btn btn-small" %>
+    <%= link_to 'Destroy', period, class: "btn btn-small btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
@@ -52,3 +62,67 @@
 <%= link_to 'Back', risks_path %>
 
 
+
+
+
+<div id="impact_modal" class="modal hide fade" tabindex="-1">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">x</button>
+      <h2>Impacts</h2>
+    </div>
+    <div class="modal-body">
+  
+
+      
+      
+      
+<div id="target">      
+      
+<%= form_tag(impact_risk_path) do %>
+<%= hidden_field_tag "period_id", ""%>
+<ul>
+      <% Impact.all.each do |impact| %>
+        <li>
+             <%= hidden_field_tag "impacts[]", impact.id%>
+             
+
+          <%= impact.name %> <br />
+          <%= select_tag "answers[]", 
+              options_from_collection_for_select(impact.answer_types, "id", "name") %>
+
+          <br />
+        </li>
+      <% end %>
+    </ul>
+
+    <button class="btn" type="submit">Submit</button>
+
+<% end %>
+
+</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal">Close</button>
+    </div>
+</div>
+
+<div class="new-window" style="display: none;">
+    <p>(message should be here)</p>
+</div>
+
+
+<script>
+$('.collapse').collapse();
+
+$('a[data-period]').click(function(){
+    
+    var period = $(this).data('period');
+    $("#period_id").val(period);
+
+     $('#impact_modal').modal('show'); 
+    return false;
+});
+
+
+
+</script>
