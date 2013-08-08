@@ -6,30 +6,23 @@
     <li data-target="#typeCarousel" data-slide-to="3"></li>
   </ol>
   <div class="carousel-inner">
-    <div class="item active" ><%= image_tag "fload.jpg" %>
-      <div class="carousel-caption">
-        <h4>Floads</h4>
-        <p>Floads are Natural disasters that tend to occur during the transition of bla bla bla</p>
-      </div>
-    </div>
-   <div class="item"><%= image_tag "drought.jpg" %>
+    <div class="item active"><%= image_tag "drought.jpg" %>
       <div class="carousel-caption">
         <h4>Drought</h4>
         <p>Droughts Natural disasters that tend to occur during the transition of bla bla bla</p>
       </div>
    </div>
-   <div class="item"><%= image_tag "cyclone.jpg" %>
+ 
+  <% Type.all.each do |type| %>
+
+    <div class="item" > <%= image_tag type.avatar.url %>
       <div class="carousel-caption">
-        <h4>Cyclones</h4>
-        <p>Cyclones Natural disasters that tend to occur during the transition of bla bla bla</p>
+        <h4><%= link_to type.name, type %></h4>
+        <p><%= type.name %> are Natural disasters that tend to occur during the transition of bla bla bla</p>
       </div>
-   </div>
-   <div class="item"><%= image_tag "famine.jpg" %>
-        <div class="carousel-caption">
-        <h4>Famines</h4>
-        <p>Famines Natural disasters that tend to occur during the transition of bla bla bla</p>
-      </div>
-   </div>
+    </div>
+    <% end %>
+   
   </div><!-- end carousel inner -->
 <a class="left carousel-control" href="#typeCarousel" data-slide="prev">&lsaquo;</a>
 <a class="right carousel-control" href="#typeCarousel" data-slide="next">&rsaquo;</a>

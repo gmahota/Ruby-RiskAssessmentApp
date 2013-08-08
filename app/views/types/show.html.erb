@@ -9,6 +9,8 @@
 
 <%= render :partial => "risks/table", :locals => {:risks => @type.risks }%>
 
+<%= image_tag @type.avatar.url %>
+
 <h3>Create a new Fload</h3>
 
 <%= render :partial => "risks/form"%>

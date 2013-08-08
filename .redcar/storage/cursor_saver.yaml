@@ -233,9 +233,6 @@ cursor_positions:
   - :path: config/routes.rb
     :cursor_offset: 457
     :timestamp: 2013-08-08 15:38:54 +02:00
-  - :path: app/views/periods/index.html.erb
-    :cursor_offset: 307
-    :timestamp: 2013-08-08 17:14:08 +02:00
   - :path: app/views/risks/_car.html.erb
     :cursor_offset: 1567
     :timestamp: 2013-08-06 13:35:47 +02:00
@@ -245,4 +242,12 @@ cursor_positions:
   - :path: app/controllers/risks_controller.rb
     :cursor_offset: 89
     :timestamp: 2013-08-08 17:11:51 +02:00
+  - :path: app/views/periods/index.html.erb
+    :cursor_offset: 707
+    :timestamp: 2013-08-08 17:14:08 +02:00
+    :selection_offset: 745
+    :block_selection_mode: false
+  - :path: app/views/types/index.html.erb
+    :cursor_offset: 0
+    :timestamp: 2013-08-02 13:25:07 +02:00
 files_to_retain: 0

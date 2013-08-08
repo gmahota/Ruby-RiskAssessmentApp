@@ -1,7 +1,25 @@
 
 
-<%#= render :partial => "car"%>
+<%= render :partial => "car"%>
 
+
+
+</fieldset>
+
+<fieldset>
+  <legend>Listing Risks</legend>
+<p>
+  <%= link_to 'New Risk', new_risk_path, class: "btn btn-primary" %>
+</p>
+<%= render :partial => "table", :locals => {:risks => @risks }%>
+
+
+<center>
+  <%= will_paginate @risks %>
+</center>
+
+<fieldset>
+  
 <fieldset>
   <legend>Search</legend>
   
@@ -28,23 +46,6 @@
        <%= submit_tag "Search", :class => "btn btn-info" %>
        </div>
 <% end %>
-
-  
-
-</fieldset>
-
-<fieldset>
-  <legend>Listing Risks</legend>
-<p>
-  <%= link_to 'New Risk', new_risk_path, class: "btn btn-primary" %>
-</p>
-<%= render :partial => "table", :locals => {:risks => @risks }%>
-
-
-<center>
-  <%= will_paginate @risks %>
-</center>
-<fieldset>
 
   <script>
       $('#typeCarousel').carousel({

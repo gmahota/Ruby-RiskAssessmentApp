@@ -1,7 +1,8 @@
-1375976652
+1375984854
 Ability	/home/timoteo/ssror13/RiskAssessmentApp/app/models/ability.rb	class Ability
 AddAtachmentToRisk	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130731150251_add_atachment_to_risk.rb	class AddAtachmentToRisk 
 AddCollumnPeriodidOnRisks	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130730144236_add_collumn_periodid_on_risks.rb	class AddCollumnPeriodidOnRisks 
+AddImageToType	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130808173425_add_image_to_type.rb	class AddImageToType 
 AddImpactAndProbabilityToPeriod	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130805145750_add_impact_and_probability_to_period.rb	class AddImpactAndProbabilityToPeriod 
 AddValueToAnswers	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130808091351_add_value_to_answers.rb	class AddValueToAnswers 
 Answer	/home/timoteo/ssror13/RiskAssessmentApp/app/models/answer.rb	class Answer 
@@ -144,6 +145,7 @@ down	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130805152238_fix_relat
 down	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130806131853_remove_period_and_impact_one_to_many_relationship.rb	  def down
 down	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130806132126_join_period_and_impacts_manyto_many.rb	  def down
 down	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130807125315_fix_relationships.rb	  def down
+down	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130808173425_add_image_to_type.rb	  def self.down
 edit	/home/timoteo/ssror13/RiskAssessmentApp/app/controllers/locations_controller.rb	  def edit
 edit	/home/timoteo/ssror13/RiskAssessmentApp/app/controllers/users_controller.rb	  def edit
 edit	/home/timoteo/ssror13/RiskAssessmentApp/app/controllers/types_controller.rb	  def edit
@@ -204,6 +206,7 @@ up	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130805152238_fix_relatio
 up	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130806131853_remove_period_and_impact_one_to_many_relationship.rb	  def up
 up	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130806132126_join_period_and_impacts_manyto_many.rb	  def up
 up	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130807125315_fix_relationships.rb	  def up
+up	/home/timoteo/ssror13/RiskAssessmentApp/db/migrate/20130808173425_add_image_to_type.rb	  def self.up
 update	/home/timoteo/ssror13/RiskAssessmentApp/app/controllers/locations_controller.rb	  def update
 update	/home/timoteo/ssror13/RiskAssessmentApp/app/controllers/users_controller.rb	  def update
 update	/home/timoteo/ssror13/RiskAssessmentApp/app/controllers/types_controller.rb	  def update
