@@ -1,0 +1,98 @@
+
+<!--Connect to the google maps api using your api key-->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+
+<script type="text/javascript">
+
+//Create the variables that will be used within the map configuration options.
+//The latitude and longitude of the center of the map.
+var mozMapCenter = new google.maps.LatLng(-21.943045533438166,33.3544921875);
+//The degree to which the map is zoomed in. This can range from 0 (least zoomed) to 21 and above (most zoomed).
+var mozMapZoom = 6;
+//The max and min zoom levels that are allowed.
+var mozMapZoomMax = 12;
+var mozMapZoomMin = 6;
+
+//These options configure the setup of the map. 
+var mozMapOptions = { 
+		  center: mozMapCenter, 
+          zoom: mozMapZoom,
+		  //The type of map. In addition to ROADMAP, the other 'premade' map styles are SATELLITE, TERRAIN and HYBRID. 
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+		  maxZoom:mozMapZoomMax,
+		  minZoom:mozMapZoomMin,
+		  //Turn off the map controls as we will be adding our own later.
+		  panControl: false,
+		  mapTypeControl: false,
+};
+
+//Create the variable for the main map itself.
+var mozMap;
+
+//When the page loads, the line below calls the function below called 'loadmozMap' to load up the map.
+google.maps.event.addDomListener(window, 'load', loadmozMap);
+
+
+
+//THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS--------------------------------------------------------------------------------
+function loadmozMap() {
+	
+//The empty map variable ('mozMap') was created above. The line below creates the map, assigning it to this variable. The line below also loads the map into the div with the id 'moz-map' (see code within the 'body' tags below), and applies the 'mozMapOptions' (above) to configure this map. 
+mozMap = new google.maps.Map(document.getElementById("moz-map"), mozMapOptions);	
+
+
+//Calls the function below to load up all the map markers.
+loadMapMarkers();
+
+}
+
+//Function that loads the map markers.
+function loadMapMarkers (){
+
+//Maputo -----------------
+
+//Setting the position of the Maputo map marker.
+var markerPositionMaputo = new google.maps.LatLng(-24.70691524106633,35.31005859375);
+
+//Setting the icon to be used with the Maputo map marker.
+var markerIconMaputo = {
+  url: 'assets/mpt.png',
+  //The size image file.
+  size: new google.maps.Size(225, 120),
+  //The point on the image to measure the anchor from. 0, 0 is the top left.
+  origin: new google.maps.Point(0, 0),
+  //The x y coordinates of the anchor point on the marker. e.g. If your map marker was a drawing pin then the anchor would be the tip of the pin.
+  anchor: new google.maps.Point(189, 116)
+};
+
+//Setting the shape to be used with the Maputo map marker.
+var markerShapeMaputo = {
+      coord: [12,4,216,22,212,74,157,70,184,111,125,67,6,56],
+      type: 'poly'
+};
+
+//Creating the Maputo map marker.
+markerMaputo = new google.maps.Marker({
+      //uses the position set above.
+	  position: markerPositionMaputo,
+	  //adds the marker to the map.
+      map: mozMap,
+      title: 'Maputo moz',
+	  //assigns the icon image set above to the marker.
+	  icon: markerIconMaputo,
+	  //assigns the icon shape set above to the marker.
+	  shape: markerShapeMaputo,
+	  //sets the z-index of the map marker.
+	  zIndex:102
+});
+
+}
+
+
+
+
+</script>
+
+
+     <!--Create the div to hold the map.-->
+    <div id="moz-map"></div>   

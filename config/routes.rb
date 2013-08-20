@@ -6,11 +6,11 @@ RiskAssessmentApp::Application.routes.draw do
   resources :answer_types
 
 
-  get "static_pages/help"
+  get "static_pages/map"
 
   get "static_pages/about"
   
-  match 'help', to: 'static_pages#help', via: 'get'
+  match 'map', to: 'static_pages#map', via: 'get'
   match 'about', to: 'static_pages#about', via: 'get'
   
   match 'risks/impact' => 'risks#impact', :as => :impact_risk
