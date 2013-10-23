@@ -44,7 +44,14 @@ gem 'execjs'
 
 gem 'will_paginate', '~> 3.0'
 
+# twitter boostrap 2
 gem 'bootstrap-datepicker-rails'
+gem "twitter-bootstrap-rails" , github: 'seyhunak/twitter-bootstrap-rails'
+gem 'bootstrap-addons-rails'
+
+#gem para os mapas
+gem "openlayers-rails", "~> 0.0.3"
+gem 'gmaps4rails'
 
 #gem 'sunspot_rails'
 #group :production do

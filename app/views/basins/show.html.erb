@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @basin.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @basin.description %>
+</p>
+
+<p>
+  <b>Obs:</b>
+  <%= @basin.obs %>
+</p>
+
+<iframe width="620" height="820" src="<%= @basin.obs %>" frameborder="0" allowfullscreen></iframe><p>source :<a href="http://www.riversnetwork.org/">riversnetwork.org</a></p>
+
+<%= link_to 'Edit', edit_basin_path(@basin) %> |
+<%= link_to 'Back', basins_path %>

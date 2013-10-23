@@ -1,5 +1,8 @@
 RiskAssessmentApp::Application.routes.draw do
   
+  resources :basins
+
+
   resources :answers
 
 
@@ -10,7 +13,7 @@ RiskAssessmentApp::Application.routes.draw do
 
   get "static_pages/about"
   
-  match 'map', to: 'static_pages#map', via: 'get'
+  match 'map', to: 'basins#index', via: 'get'
   match 'about', to: 'static_pages#about', via: 'get'
   
   match 'risks/impact' => 'risks#impact', :as => :impact_risk
