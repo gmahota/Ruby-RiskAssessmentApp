@@ -1,3 +1,393 @@
+ <!-- OpenLayers core js -->
+        <script
+        src="http://www.openlayers.org/dev/OpenLayers.js"></script>
+        
+        <script src="http://openlayers.org/api/OpenLayers.js"></script>
+       
+        <!-- OpenStreetMap base layer js -->
+        <script
+        src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
+        <!-- Google Maps -->
+        <script src="http://maps.google.com/maps/api/js?sensor=false">
+        </script>
+
+<script type="text/javascript">
+        function initialize() {
+            var bacia = "<%= @basin.obs %>"
+
+            if(bacia == 1 )
+            {
+
+            //set up projections
+            // World Geodetic System 1984 projection
+            var WGS84 = new OpenLayers.Projection("EPSG:4326");
+            
+            // WGS84 Google Mercator projection
+            var WGS84_google_mercator = new OpenLayers.Projection("EPSG:900913");
+            //Initialize the map
+            //creates a new openlayers map in the <div> html element id map
+            var map = new OpenLayers.Map ("map", {
+                controls:[
+                    //allows the user pan ability
+                    new OpenLayers.Control.Navigation(),
+                    //displays the pan/zoom tools
+                    new OpenLayers.Control.PanZoom(),
+                    //displays a layer switcher
+                    new OpenLayers.Control.LayerSwitcher(),
+                    //displays the mouse position's coordinates in a <div> html element with
+                    new OpenLayers.Control.MousePosition({
+                        div:document.getElementById("coordinates")
+                    })
+                ],
+                    projection: WGS84_google_mercator,
+                    displayProjection: WGS84
+                    
+        
+            } );
+            //base layers
+            var openstreetmap = new OpenLayers.Layer.OSM();
+            var google_maps = new OpenLayers.Layer.Google(
+                "Google Maps", {
+                    numZoomLevels: 15
+                }
+            );
+            var google_satellite = new OpenLayers.Layer.Google(
+                "Google Satellite", {
+                    type: google.maps.MapTypeId.SATELLITE,
+                    numZoomLevels: 15
+                }
+            );
+            //wfs overlay
+            var wfs_layer = new OpenLayers.Layer.Vector("Blocks", {
+                strategies: [new OpenLayers.Strategy.BBOX()],
+                projection: WGS84,
+                protocol: new OpenLayers.Protocol.WFS({
+                    version: "1.1.0",
+                    url: "http://hazardmapping.com/geoserver/wfs",
+                    featureNS :  "http://www.opengeospatial.net/cite",
+                    featureType: "testblocks",
+                })
+            });
+            map.addLayers([openstreetmap, google_maps, google_satellite, wfs_layer]);
+            
+
+            //add markers
+            var couche_markers = new OpenLayers.Layer.Markers("Markers");
+            var dimension_icon = new OpenLayers.Size(24,24);
+            var offset_icon = new OpenLayers.Pixel(-(dimension_icon.w/2), -dimension_icon.h);
+            
+            var size = new OpenLayers.Size(21,25);
+            var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+            var icon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+            lonlat=new OpenLayers.LonLat(29.7524,-23.97097).transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
+            );
+
+            var markers = new OpenLayers.Layer.Markers( "Markers" );
+            map.addLayer(markers);  
+
+            //var mon_marker=new OpenLayers.Marker(lonlat, icon);
+            //markers.addMarker(mon_marker);
+            //map.addLayer(markers);
+           
+
+            //var lonlat = new OpenLayers.LonLat(32.582224,-25.97097).transform(new OpenLayers.//Projection("EPSG:4326"),new OpenLayers.Projection("EPSG:900913"));
+            map.setCenter(lonlat);
+            map.zoomTo(6);
+
+
+            var aa = new OpenLayers.Layer.Vector("Estuary Watersheds", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_Estuary.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            aa.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ab = new OpenLayers.Layer.Vector("Estuary Rivers", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_EstuaryRiver.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ab.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ac = new OpenLayers.Layer.Vector("Estuary Water Areas", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_EstuaryWetland.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ac.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ad = new OpenLayers.Layer.Vector("Lower Limpopo Watersheds", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_Lower Limpopo.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ad.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ae = new OpenLayers.Layer.Vector("Lower Limpopo Rivers", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_Lower LimpopoRiver.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ae.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var af = new OpenLayers.Layer.Vector("Lower Limpopo Water Areas", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_Lower LimpopoWetland.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            af.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ag = new OpenLayers.Layer.Vector("Changane Watersheds", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_Changane.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ag.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ah = new OpenLayers.Layer.Vector("Changane Rivers", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_ChanganeRiver.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ah.setVisibility(true);        
+            //map.addLayer(aa);
+
+             var ai = new OpenLayers.Layer.Vector("Changane Water Areas", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_Elefantes.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ai.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var aj = new OpenLayers.Layer.Vector("Elefantes Watersheds", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_Elefantes.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            aj.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ak = new OpenLayers.Layer.Vector("Elefantes Rivers", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_ElefantesRiver.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ak.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var al = new OpenLayers.Layer.Vector("Elefantes Water Areas", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_ElefantesWetland.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            al.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var am = new OpenLayers.Layer.Vector("Upper Limpopo Watersheds", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_Upper Limpopo.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            am.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var an = new OpenLayers.Layer.Vector("Upper Limpopo Rivers", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_Upper LimpopoRiver.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            an.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ao = new OpenLayers.Layer.Vector("Upper Limpopo Areas", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo_Upper LimpopoWetland.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ao.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var az = new OpenLayers.Layer.Vector("Limpopo Watersheds", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Limpopo.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            az.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ma = new OpenLayers.Layer.Vector("South Africa", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/SouthAfrica.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+
+            var mb = new OpenLayers.Layer.Vector("Zimbabwe", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zimbabwe.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+
+            var mc = new OpenLayers.Layer.Vector("Mozambique", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Mozambique.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+
+            var md = new OpenLayers.Layer.Vector("Botswana", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Botswana.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+    
+                
+                    ma.setVisibility(false);
+                mb.setVisibility(false);
+                    mc.setVisibility(false);
+                md.setVisibility(false);
+                az.setVisibility(false);
+
+
+                map.addLayers([aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,az,ma,mb,mc,md]);
+            }
+        }
+        </script>
+
+
+
+
+
+
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -12,10 +402,13 @@
 
 <p>
   <b>Obs:</b>
-  <%= @basin.obs %>
+  <%#= @basin.obs %>
 </p>
 
-<iframe width="620" height="820" src="<%= @basin.obs %>" frameborder="0" allowfullscreen></iframe><p>source :<a href="http://www.riversnetwork.org/">riversnetwork.org</a></p>
+<div style='width: 600px;'>
+  <div id="map" style="width:500px; height:500px;"></div>
+</div>
+
 
 <%= link_to 'Edit', edit_basin_path(@basin) %> |
 <%= link_to 'Back', basins_path %>
