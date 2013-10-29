@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Descricao:</b>
+  <%= @dam.descricao %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @dam.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @dam.longitude %>
+</p>
+
+<p>
+  <b>Radius:</b>
+  <%= @dam.radius %>
+</p>
+
+<p>
+  <b>Basin:</b>
+  <%= @dam.basin_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_dam_path(@dam) %> |
+<%= link_to 'Back', dams_path %>

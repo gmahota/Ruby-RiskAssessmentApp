@@ -1,5 +1,8 @@
 RiskAssessmentApp::Application.routes.draw do
   
+  resources :dams
+
+
   resources :basins
 
 

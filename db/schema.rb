@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023192333) do
+ActiveRecord::Schema.define(:version => 20131029132741) do
 
   create_table "answer_types", :force => true do |t|
     t.string   "name"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(:version => 20131023192333) do
 
   create_table "classifications", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "dams", :force => true do |t|
+    t.string   "descricao"
+    t.integer  "latitude"
+    t.integer  "longitude"
+    t.integer  "radius"
+    t.integer  "basin_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -1,3 +1,14 @@
+ <script type="text/javascript">
+  $(function(){
+
+    $('#myTab a').click(function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+    })
+    
+  });
+</script>
+
  <!-- OpenLayers core js -->
         <script
         src="http://www.openlayers.org/dev/OpenLayers.js"></script>
@@ -70,6 +81,7 @@
             });
             map.addLayers([openstreetmap, google_maps, google_satellite, wfs_layer]);
             
+            
 
             //add markers
             var couche_markers = new OpenLayers.Layer.Markers("Markers");
@@ -79,17 +91,13 @@
             var size = new OpenLayers.Size(21,25);
             var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
             var icon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+
             lonlat=new OpenLayers.LonLat(29.7524,-23.97097).transform(
             new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
             new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
             );
 
-            var markers = new OpenLayers.Layer.Markers( "Markers" );
-            map.addLayer(markers);  
-
-            //var mon_marker=new OpenLayers.Marker(lonlat, icon);
-            //markers.addMarker(mon_marker);
-            //map.addLayer(markers);
+            
            
 
             //var lonlat = new OpenLayers.LonLat(32.582224,-25.97097).transform(new OpenLayers.//Projection("EPSG:4326"),new OpenLayers.Projection("EPSG:900913"));
@@ -372,12 +380,58 @@
                 
                     ma.setVisibility(false);
                 mb.setVisibility(false);
-                    mc.setVisibility(false);
+                    mc.setVisibility(true);
                 md.setVisibility(false);
                 az.setVisibility(false);
 
 
                 map.addLayers([aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,an,ao,az,ma,mb,mc,md]);
+                
+                /*var markers = new OpenLayers.Layer.Markers( "Markers" );
+            map.addLayer(markers);  
+
+            var mon_marker=new OpenLayers.Marker(lonlat, icon);
+
+            markers.addMarker(mon_marker);
+            map.addLayer(markers);*/
+            
+            var damMarkers = new OpenLayers.Layer.Markers( "Dams %>" );
+                map.addLayer(damMarkers);
+
+            <% @basin.dams.each do |dam| %>
+
+                var icon<%= dam.id %> = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+            
+                
+
+              lonlat<%= dam.id %>=new OpenLayers.LonLat( <%= dam.longitude %> ,<%= dam.latitude %>).transform(
+                new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
+                );
+              var mon_marker<%= dam.id %> =new OpenLayers.Marker(lonlat<%= dam.id %>, icon<%= dam.id %>);
+
+              damMarkers.addMarker(mon_marker<%= dam.id %>);
+                
+            mon_marker<%= dam.id %>.events.register("click", mon_marker<%= dam.id %>, function(e){
+               popup<%= dam.id %> = new OpenLayers.Popup.FramedCloud("<%= dam.descricao %>",
+                         mon_marker<%= dam.id %>.lonlat,
+                         new OpenLayers.Size(200, 200),
+                         "<%= dam.descricao %>",
+                         null, true); 
+
+
+            map.addPopup(popup<%= dam.id %>);
+              }); 
+
+
+
+
+             
+
+            <% end %>
+            map.addLayer(damMarkers);
+              
+
             }
         }
         </script>
@@ -387,27 +441,87 @@
 
 
 
+<div class="container">
+    <div >
+    <ul class="nav nav-tabs" id="myTab">
+      <li class="active"><a href="#maps">Mapa</a></li>
+      <li><a href="#dam">Barragens</a></li>
+      <li><a href="#basin">Descrição</a></li>
+      
+    </ul>
+ 
+    <div class="tab-content">
+      <div class="tab-pane active" id="maps">
+        
 
-<p id="notice"><%= notice %></p>
+        <div style='width: 600px;'>
+          <div id="map" style="width:500px; height:800px;"></div>
+        </div>
+  
+      </div>
+      <div class="tab-pane" id="dam">
+        <h1>Listing dams</h1>
 
-<p>
-  <b>Name:</b>
-  <%= @basin.name %>
-</p>
+            
+            <table>
+              <tr>
+                <th>Descricao</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Radius</th>
+                <th>Basin</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
 
-<p>
-  <b>Description:</b>
-  <%= @basin.description %>
-</p>
+            <% @basin.dams.each do |dam| %>
+              <tr>
+                <td><%= dam.descricao %></td>
+                <td><%= dam.latitude %></td>
+                <td><%= dam.longitude %></td>
+                <td><%= dam.radius %></td>
+                <td><%= dam.basin_id %></td>
+                <td><%= link_to 'Show', dam %></td>
+                <td><%= link_to 'Edit', edit_dam_path(dam) %></td>
+                <td><%= link_to 'Destroy', dam, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+            </table>
 
-<p>
-  <b>Obs:</b>
-  <%#= @basin.obs %>
-</p>
+            <br />
+        
+        
+        
+      </div>
 
-<div style='width: 600px;'>
-  <div id="map" style="width:500px; height:500px;"></div>
+      <div class="tab-pane" id="basin">
+        <p id="notice"><%= notice %></p>
+
+        <p>
+          <b>Name:</b>
+          <%= @basin.name %>
+        </p>
+
+        <p>
+          <b>Description:</b>
+          <%= @basin.description %>
+        </p>
+
+        <p>
+          <b>Obs:</b>
+          <%#= @basin.obs %>
+        </p>       
+        
+        
+      </div>
+      
+      
+    </div>
 </div>
+</div>
+
+
 
 
 <%= link_to 'Edit', edit_basin_path(@basin) %> |

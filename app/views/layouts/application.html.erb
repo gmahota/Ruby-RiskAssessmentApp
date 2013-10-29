@@ -8,7 +8,7 @@
 </head>
 <body onload = "initialize()">
   
-  <div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar navbar-inverse navbar-fixed-top" style="position: static">
   <div class="navbar-inner">
     <div class="container">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".collapse">
@@ -17,8 +17,7 @@
         <span class="icon-bar"></span>
       </a>
       <a class="brand" href="#">RiMa</a>
-      <div class="nav-collapse">
-        <ul class="nav">
+      <ul class="nav">
            <li><%= link_to "Home", root_path %></li>
            <li><%= link_to "Locations", locations_path %></li> 
            <li><%= link_to "Types", types_path %></li>
@@ -28,9 +27,8 @@
           <li><%= link_to "About Us", about_path %></li>
           <li><%= link_to "Map", map_path %></li>
         </ul>
-      </div>
-  <div class="nav-collapse"><!-- Other nav bar content -->
-         <div id="user_nav"> 
+      
+  <div id="user_nav"> 
           <% if current_user %> 
         <ul class="nav pull-right">
           <li><% u = User.find(current_user)  %> 
@@ -48,7 +46,7 @@
         <% end %>  
       </div>
     </div>
-  </div>
+  
 </div>
 </div>
 

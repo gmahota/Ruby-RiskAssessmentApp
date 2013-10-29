@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  descricao: MyString
+  latitude: 1
+  longitude: 1
+  radius: 1
+  basin_id: 1
+
+two:
+  descricao: MyString
+  latitude: 1
+  longitude: 1
+  radius: 1
+  basin_id: 1
