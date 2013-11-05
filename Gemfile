@@ -24,7 +24,12 @@ group :assets do
   
   gem 'therubyracer', :platforms => :ruby
   
+  #gem para os mapas
+gem "openlayers-rails", "~> 0.0.3"
+gem 'gmaps4rails'
 
+#meterologia do Yahoo
+gem "yahoo_weather", "~> 1.1.1"
  
   
   gem 'uglifier', '>= 1.0.3'
@@ -48,13 +53,6 @@ gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-datepicker-rails'
 gem "twitter-bootstrap-rails" , github: 'seyhunak/twitter-bootstrap-rails'
 gem 'bootstrap-addons-rails'
-
-#gem para os mapas
-gem "openlayers-rails", "~> 0.0.3"
-gem 'gmaps4rails'
-
-#meterologia do Yahoo
-gem "yahoo_weather", "~> 1.1.1"
 
 #gem 'sunspot_rails'
 #group :production do
