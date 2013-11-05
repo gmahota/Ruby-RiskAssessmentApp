@@ -15,6 +15,9 @@ class BasinsController < ApplicationController
   def show
     @basin = Basin.find(params[:id])
 
+    @client = YahooWeather::Client.new 
+    @response = @client.fetch_by_location('Massingir, Gaza, Mz','c')
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @basin }

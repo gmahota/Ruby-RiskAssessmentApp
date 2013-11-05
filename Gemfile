@@ -53,6 +53,9 @@ gem 'bootstrap-addons-rails'
 gem "openlayers-rails", "~> 0.0.3"
 gem 'gmaps4rails'
 
+#meterologia do Yahoo
+gem "yahoo_weather", "~> 1.1.1"
+
 #gem 'sunspot_rails'
 #group :production do
 #    gem 'pg', '0.12.2'

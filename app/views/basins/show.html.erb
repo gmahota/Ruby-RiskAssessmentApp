@@ -400,9 +400,10 @@
 
             <% @basin.dams.each do |dam| %>
 
-                var icon<%= dam.id %> = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+             var icon<%= dam.id %> = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
             
                 
+            //var icon<%= dam.id %> = new OpenLayers.Icon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/orange-dot.png', size, offset);
 
               lonlat<%= dam.id %>=new OpenLayers.LonLat( <%= dam.longitude %> ,<%= dam.latitude %>).transform(
                 new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
@@ -420,7 +421,7 @@
                          null, true); 
 
 
-            map.addPopup(popup<%= dam.id %>);
+           map.addPopup(popup<%= dam.id %>);
               }); 
 
 
@@ -447,6 +448,8 @@
       <li class="active"><a href="#maps">Mapa</a></li>
       <li><a href="#dam">Barragens</a></li>
       <li><a href="#basin">Descrição</a></li>
+      <li><a href="#meterologic">Meterologia</a></li>
+
       
     </ul>
  
@@ -515,6 +518,42 @@
         
         
       </div>
+      
+      <div class="tab-pane" id="meterologic">
+        <p>
+             <%= @response.title%>
+        </p>
+
+        <p>
+            <%#= @response.units.temperature%>
+
+           <img src="<%#= @response.image_url %>"><br/>
+        </p>
+         
+        <p>
+           Temperatura Actual: <%= @response.condition.temp %> º       
+        </p>
+        <p>
+            Direção do Vento  <%= @response.wind.direction%> º <%= @response.wind.direction('ESE')%>    
+           
+        </p> 
+        
+        <p>
+            <%= @response.condition.code   %>    
+           
+        </p>
+        <p>
+            <%#= @response.condition.code('string') %>
+        
+        </p>
+
+        Forecast:<br/>
+  <%= @response.forecasts[0].day %> - <%= @response.forecasts[0].text %>.  High:  <%= @response.forecasts[0].high %> Low:  <%= @response.forecasts[0].low %><br/>
+  <%= @response.forecasts[1].day %> - <%= @response.forecasts[1].text %>.  High:  <%= @response.forecasts[1].high %> Low: <%= @response.forecasts[1].low %><br/>
+  More information <a href="<%= @response.link%>">here</a>.
+
+      </div>
+
       
       
     </div>
