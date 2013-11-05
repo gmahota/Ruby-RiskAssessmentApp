@@ -1,0 +1,51 @@
+<div id="typeCarousel" class="carousel slide">
+  <ol class="carousel-indicators">
+    <li data-target="#typeCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#typeCarousel" data-slide-to="1"></li>
+    <li data-target="#typeCarousel" data-slide-to="2"></li>
+    <li data-target="#typeCarousel" data-slide-to="3"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active"><%= image_tag "drought.jpg" %>
+      <div class="carousel-caption">
+        <h4>Drought</h4>
+        <p>Droughts Natural disasters that tend to occur during the transition of ...</p>
+      </div>
+   </div>
+
+   <div class="item"><%= image_tag "famine.jpg" %>
+      <div class="carousel-caption">
+        <h4>Famine</h4>
+        <p>Famine Natural disasters that tend to occur during the transition of ...</p>
+      </div>
+   </div>
+
+   <div class="item"><%= image_tag "fload.jpg" %>
+      <div class="carousel-caption">
+        <h4>Fload</h4>
+        <p>Fload Natural disasters that tend to occur during the transition of ...</p>
+      </div>
+   </div>
+
+   <div class="item"><%= image_tag "cyclone.jpg" %>
+      <div class="carousel-caption">
+        <h4>Cyclone</h4>
+        <p>Cyclone Natural disasters that tend to occur during the transition of...</p>
+      </div>
+   </div>
+ <!--
+  <% Type.all.each do |type| %>
+
+    <div class="item" > <%= image_tag type.avatar.url %>
+      <div class="carousel-caption">
+        <h4><%= link_to type.name, type %></h4>
+        <p><%= type.name %> are Natural disasters that tend to occur during the transition of bla bla bla</p>
+      </div>
+    </div>
+    <% end %>
+   -->
+  </div><!-- end carousel inner -->
+<a class="left carousel-control" href="#typeCarousel" data-slide="prev">&lsaquo;</a>
+<a class="right carousel-control" href="#typeCarousel" data-slide="next">&rsaquo;</a>
+
+</div><!-- end type carousel -->

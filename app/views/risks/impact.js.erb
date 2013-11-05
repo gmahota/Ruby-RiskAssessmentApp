@@ -1,0 +1,5 @@
+
+$("#target").empty().append("<%= j render 'impact', risk_id: @risk.id, period_id: @period.id %>")
+
+$('#impact_modal').modal('show');
+

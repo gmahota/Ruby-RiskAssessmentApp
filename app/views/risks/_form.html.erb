@@ -1,4 +1,4 @@
-<%= simple_form_for(@risk) do |f| %>
+<%= simple_nested_form_for(@risk) do |f| %>
   <% if @risk.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@risk.errors.count, "error") %> prohibited this risk from being saved:</h2>
@@ -18,19 +18,35 @@
   <%= select("risk", "type_id", Type.all.collect{|p| [p.name,p.id]})%>
 </br>
 <%= f.input :doc, :as => :file%>
-<%= f.button :submit %>
 
-<%= simple_nested_form_for @risk do |f| %>
+
+<%#= simple_nested_form_for @risk do |f| %>
 <%= f.fields_for :periods do |period_form| %>
   <%= period_form.date_select :from_date,  :class => 'datepicker' %>
-  <%= period_form.date_select :to_date, class: "datepicker" %>
+  <%= period_form.date_select :to_date%>
   <%= period_form.time_select :from_time %>
-  <%= period_form.time_select :to_time %>
+  <%= period_form.time_select :to_time %>  
   <%= period_form.link_to_remove "Remove this period" %>
+  
+  <%= period_form.select :probability_id, Probability.all.collect{|p| [p.name,p.id]}%>
+  
+  
+  
 <% end %>
 <p><%= f.link_to_add "Add a task", :periods %></p>
-<% end %>
 
+<%= f.button :submit %>
 
   
 <% end %>
+
+<script>
+$(document).on('nested:fieldAdded', function(event){
+  // this field was just inserted into your form
+  var field = event.field; 
+  // it's a jQuery object already! Now you can find date input
+  var dateField = field.find('.date');
+  // and activate datepicker on it
+  dateField.datepicker();
+})
+</script>

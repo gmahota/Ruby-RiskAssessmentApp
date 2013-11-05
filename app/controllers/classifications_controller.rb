@@ -14,7 +14,7 @@ class ClassificationsController < ApplicationController
   # GET /classifications/1.json
   def show
     @classification = Classification.find(params[:id])
-
+    @impacts = Impact.where(:classification_id => @classification.id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @classification }

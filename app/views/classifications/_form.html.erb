@@ -8,4 +8,16 @@
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
+
+<%= simple_nested_form_for @classification do |f| %>
+<%= f.fields_for :impacts do |period_form| %>
+  <%= period_form.text_field :name %>
+  <%= period_form.text_field :value %>
+  <%= period_form.link_to_remove "Remove this Impact" %>
+<% end %>
+<p><%= f.link_to_add "Add a Impact", :impacts %></p>
+<% end %>
+
+
+
 <% end %>

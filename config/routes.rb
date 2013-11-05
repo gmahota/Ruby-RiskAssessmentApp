@@ -1,6 +1,35 @@
 RiskAssessmentApp::Application.routes.draw do
   
+<<<<<<< HEAD
   resources :bacia
+=======
+  resources :dams
+
+
+  resources :basins
+
+
+  resources :answers
+
+
+  resources :answer_types
+
+
+  get "static_pages/map"
+
+  get "static_pages/about"
+  
+  match 'map', to: 'basins#index', via: 'get'
+  match 'about', to: 'static_pages#about', via: 'get'
+  
+  match 'risks/impact' => 'risks#impact', :as => :impact_risk
+
+  match 'risks/register' => 'risks#register', :as => :register_risk
+  
+   match 'risks/matrix' => 'risks#matrix', :as => :matrix_risk
+
+  resources :controlers
+>>>>>>> c2feadcacd799135798a59322c9d755fc83cfc7f
 
 
   resources :classifications
@@ -27,6 +56,18 @@ RiskAssessmentApp::Application.routes.draw do
 
   resources :locations do
     resources :risks
+  end
+
+  resources :classifications do
+    resources :impacts
+  end
+
+  resources :impacts do
+    resources :periods
+  end
+
+  resources :probabilities do
+    resources :periods
   end
 
 

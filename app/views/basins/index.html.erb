@@ -1,0 +1,27 @@
+<h1>Listing basins</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Obs</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @basins.each do |basin| %>
+  <tr>
+    <td><%= basin.name %></td>
+    <td><%= basin.description %></td>
+    <td><%= basin.obs %></td>
+    <td><%= link_to 'Show', basin %></td>
+    <td><%= link_to 'Edit', edit_basin_path(basin) %></td>
+    <td><%= link_to 'Destroy', basin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Basin', new_basin_path %>

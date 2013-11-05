@@ -11,6 +11,7 @@ class Risk < ActiveRecord::Base
   
   has_attached_file :doc
   
+<<<<<<< HEAD
   #searchable do
   #  text :description
     
@@ -27,6 +28,9 @@ class Risk < ActiveRecord::Base
   #end
   
   
+=======
+    
+>>>>>>> c2feadcacd799135798a59322c9d755fc83cfc7f
    self.per_page = 3
 
   def self.search(description, type_id, loc_id)

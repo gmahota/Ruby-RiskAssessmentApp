@@ -8,7 +8,7 @@
 </head>
 <body onload = "initialize()">
   
-  <div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar navbar-inverse navbar-fixed-top" style="position: static">
   <div class="navbar-inner">
     <div class="container">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".collapse">
@@ -17,72 +17,38 @@
         <span class="icon-bar"></span>
       </a>
       <a class="brand" href="#">RiMa</a>
-      <div class="nav-collapse">
-        <ul class="nav">
-          <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Locations", locations_path %></li> 
-           <li><%= link_to "Types", types_path %></li> 
-         
-          
-   
+      <ul class="nav">
+           <li><%= link_to "Home", root_path %></li>
+           <li><%= link_to "Locations", locations_path %></li> 
+           <li><%= link_to "Types", types_path %></li>
+           <li><%= link_to "Impacts", impacts_path %></li>
+           <li><%= link_to "Probabilities", probabilities_path %></li>  
+          <li><%= link_to "Matrix", matrix_risk_path %></li> 
+          <li><%= link_to "About Us", about_path %></li>
+          <li><%= link_to "Map", map_path %></li>
         </ul>
-      </div>
-        
-        <div class="nav-collapse"><!-- Other nav bar content -->
-    
-         <div id="user_nav"> 
+      
+  <div id="user_nav"> 
           <% if current_user %> 
         <ul class="nav pull-right">
-        
-          <li>
-            <% u = User.find(current_user)  %> 
-        <%=  link_to "Bem vindo: #{u.name}", root_path%>
-            
-          </li>
-        
-          <li>
-    
-    <%= link_to "Edit profile", edit_user_path(current_user) %>  
-  
-          </li>
+          <li><% u = User.find(current_user)  %> 
+           <%=  link_to "Bem vindo: #{u.name}", root_path%> </li>
+          <li> <%= link_to "Edit profile", edit_user_path(current_user) %></li>
           <li class="divider-vertical"></li>
-          <li>
-          <%= link_to "Logout", logout_path  %> 
-            
-          </li>
-          
-          
-
+          <li><%= link_to "Logout", logout_path  %></li>
         </ul>
-        
          <% else %> 
         <ul class="nav pull-right">
-          <li>
-            
-     <%= link_to "Register", new_user_path %>   
-    
-            
-          </li>
-          
-          
-          
+          <li> <%= link_to "Register", new_user_path %></li>
           <li class="divider-vertical"></li>
-          <li>
-             <%= link_to "Log in", login_path %>   
-          </li>
-          
-          
+          <li> <%= link_to "Log in", login_path %></li>
         </ul>
         <% end %>  
       </div>
-
-          
-          
-      
     </div>
-  </div>
+  
 </div>
-
+</div>
 
 <div class="container">
   <div class="row">
@@ -96,9 +62,9 @@
     </div>
 <% end %>
 
-
  <%= yield %></div>
     <div class="span3">
+    </br>
       <div class="thumbnail">
         <%= image_tag "rima.jpg" %>
    
@@ -116,11 +82,14 @@ monitoring and alerting
     </div>
   </div>
 </div>
-</br></br></br>
+</br>
+<hr>
 <!-- Footer
     ================================================== -->
     <footer class="bs-footer">
-      <center>Rima develoved by Timóteo Júnior and Guimarães Júnior for the SSOR13</center>
+      <center>&copy Rima develoved by <a href="http://timoteojjunior.wordpress.com/">Timóteo Júnior</a> and <a href="http://mahotag.blogspot.com">Guimarães Júnior</a> for the SSOR13
+        <p>Powered by <a href="http://twitter.github.io/bootstrap/">Bootstrap</a></p>
+      </center>
       
     </footer>
 

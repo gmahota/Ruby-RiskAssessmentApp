@@ -1,10 +1,9 @@
 <h1>Listing impacts</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Name</th>
-    <th>Value</th>
-    <th>Classification</th>
+    
     <th></th>
     <th></th>
     <th></th>
@@ -13,11 +12,10 @@
 <% @impacts.each do |impact| %>
   <tr>
     <td><%= impact.name %></td>
-    <td><%= impact.value %></td>
-    <td><%= impact.classification_id %></td>
+  
     <td><%= link_to 'Show', impact %></td>
-    <td><%= link_to 'Edit', edit_impact_path(impact) %></td>
-    <td><%= link_to 'Destroy', impact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Edit', edit_impact_path(impact), class: "btn btn-small" %>
+    </td>
   </tr>
 <% end %>
 </table>

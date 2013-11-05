@@ -1,0 +1,54 @@
+<div class="container"> 
+	<div class="row" >
+		<form>
+				<fieldset>
+					<legend>Feedback Form</legend>
+						<label>Your Name</label>
+						<input type="text" name="Name" class="span4" placeholder="First and last please!">
+						<label>Twitter username</label>
+						<div class="input-prepend">
+							<span class="add-on">@</span>
+							<input type="text" name="Twitter" class="span3">
+						</div>
+						<label>Whats the most dangerous risk in youŕ opinion</label>
+						<%# risks.each do |risk| %>
+							<label class="radio"> 
+								<input type="radio" name="Risks" value="Risk 1">R1
+							</label>
+							<label class="radio"> 
+								<input type="radio" name="Risks" value="Risk 2">R2
+							</label>
+						<%# end -%>
+						<label>Whould you visit this website again? </label>
+						<label class="radio inline">
+							<input type="radio" name="comeagain" value="yes">Yes
+						</label>
+						<label class="radio inline">
+							<input type="radio" name="comeagain" value="No">No
+						</label>
+						<label>Your Province:</label>
+							<select name="province" size="1" class="span4">
+								<option selected>Select One</option>
+								<option value="mpt">Maputo</option>
+								<option value="br">Beira</option>
+								<option value="npl">Nampula</option>
+							</select>
+							<label>Coments:</label>
+							<textarea name="comments" class="span4" title="We welcome your opinion" data-toggle="tooltip" data-placement="right"></textarea>
+							<label class="checkbox"><input name="subscribe" type="checkbox" value="subscribe" data-toggle="collapse" data-target="#email"> Subscribe me now!</label>
+							<div id="email" class="collapse in">
+								<label>Your email</label>
+								<input type="text" name="email" class="span4">
+							</div>
+							<p>
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</p>
+ 				</fieldset>
+		</form>	
+	</div>
+</div>
+
+<script>
+	$('textarea').tooltip();
+	$('.collapse').collapse();
+</script>

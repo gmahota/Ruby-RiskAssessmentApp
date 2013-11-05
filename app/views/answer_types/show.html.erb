@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @answer_type.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @answer_type.value %>
+</p>
+
+<p>
+  <b>Impact:</b>
+  <%= @answer_type.impact_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_answer_type_path(@answer_type) %> |
+<%= link_to 'Back', answer_types_path %>

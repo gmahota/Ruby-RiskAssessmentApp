@@ -1,30 +1,8 @@
-</br>
-<fieldset>
-  <legend>Search</legend>
-  
-        <%= form_tag risks_url, :method => :get, :class => "form-search" do %>
-  <%= text_field_tag :search_term, params[:search_term], 
-      :class => "input-medium", 
-      :placeholder => "Description" %>
-       <%= submit_tag "Search", :class => "btn" %>
-<% end %>
 
-      
-    
-      
-        <%= form_tag risks_url, :method => :get, :class => "form-search" do %>
-  <%= select_tag "selected_type", 
-      options_from_collection_for_select(Type.all, "id", "name") %>
-       <%= submit_tag "Search", :class => "btn" %>
-<% end %>
 
-        <%= form_tag risks_url, :method => :get, :class => "form-search" do %>
-  <%= select_tag "selected_location", 
-      options_from_collection_for_select(Location.all, "id", "name") %>
-       <%= submit_tag "Search", :class => "btn" %>
-<% end %>
+<%= render :partial => "car"%>
 
-  
+
 
 </fieldset>
 
@@ -39,5 +17,41 @@
 <center>
   <%= will_paginate @risks %>
 </center>
+
 <fieldset>
+  
+<fieldset>
+  <legend>Search</legend>
+  
+        <%= form_tag risks_url, :method => :get, :class => "form-search" do %>
+        <div class="input-append">
+  <%= text_field_tag :search_term, params[:search_term], 
+      :class => "search-query", 
+      :placeholder => "Description" %>
+       <%= submit_tag "Search", :class => "btn btn-info" %>
+       </div>
+<% end %>
+        <%= form_tag risks_url, :method => :get, :class => "form-search" do %>
+        <div class="input-append">
+  <%= select_tag "selected_type", 
+      options_from_collection_for_select(Type.all, "id", "name") %>
+       <%= submit_tag "Search", :class => "btn btn-info" %>
+       </div>
+<% end %>
+
+        <%= form_tag risks_url, :method => :get, :class => "form-search" do %>
+        <div class="input-append">
+  <%= select_tag "selected_location", 
+      options_from_collection_for_select(Location.all, "id", "name") %>
+       <%= submit_tag "Search", :class => "btn btn-info" %>
+       </div>
+<% end %>
+
+  <script>
+      $('#typeCarousel').carousel({
+        interval: 5000,
+        cycle: true
+
+      });
+  </script>
 

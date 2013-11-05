@@ -1,0 +1,39 @@
+<h1>Simple Risk Register</h1>
+<table class='table'>
+  <tr>
+    <th>Description</th>
+    
+    <th>Probability</th>
+    
+    
+    <% Impact.all.each do |at| %>
+    <td>
+    <%= at.name %>
+    
+  </td>
+    <% end %>
+   
+    <th>Score</th>
+    
+  </tr>
+
+<% @risks.each do |risk| %>
+  <tr>
+    <td><%= link_to risk.description, risk_path(risk)  %></td>
+    <% periods = Period.where(:risk_id => risk.id)%>
+    <% periods.each do |period| %>
+    <td>
+
+      <%= period.probability.value %></td>
+
+    <% Impact.all.each do |impact| %>
+    <td>
+    <%= Answer.where(:period_id => period.id, :impact_id => impact.id).first.value %>
+    
+  </td>
+    <% end %>
+    <% end %>
+    <td>xxx</td>
+  </tr>
+<% end %>
+</table>

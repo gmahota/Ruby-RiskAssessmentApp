@@ -1,0 +1,27 @@
+
+<div id="target">      
+      
+<%= form_tag(impact_risk_path) do %>
+
+<ul>
+      <% Impact.all.each do |impact| %>
+        <li>
+          <%= impact.name %> <br />
+          <%= select_tag "answers[]", 
+              options_from_collection_for_select(impact.answer_types, "id", "name") %>
+              <div id="periodid">
+                 <%= param[":id"]%>
+              </div>
+            <%= hidden_field_tag impact.id %>
+            <%= hidden_field_tag  @period.id %>
+            <%= hidden_field_tag  @risk.id %>
+          <br />
+        </li>
+      <% end %>
+    </ul>
+
+    <button class="btn" type="submit">Submit</button>
+
+<% end %>
+
+</div>

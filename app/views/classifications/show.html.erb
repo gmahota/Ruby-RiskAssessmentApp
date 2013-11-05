@@ -1,20 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<p><h2>
   <b>Name:</b>
   <%= @classification.name %>
-</p>
-
-<p>
-  <b>Value:</b>
-  <%= @classification.value %>
-</p>
-
-<p>
-  <b>Impact:</b>
-  <%= @classification.impact_id %>
+</h2>
 </p>
 
 
 <%= link_to 'Edit', edit_classification_path(@classification) %> |
 <%= link_to 'Back', classifications_path %>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @impacts.each do |impact| %>
+  <tr>
+    <td><%= impact.name %></td>
+    <td><%= impact.value %></td>
+    <td><%= link_to 'Show', impact %></td>
+    <td><%= link_to 'Edit', edit_impact_path(impact) %></td>
+    <td><%= link_to 'Destroy', impact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,36 @@
+<h1>Risk Matrix</h1>
+
+
+
+
+<table class='table table-bordered'>
+  <tr>
+    <th></th>
+    <th>1</th>
+    <th>2</th>
+    <th>3</th>
+    <th>4</th>
+    <th>5</th>
+  
+  </tr>
+  
+<% Probability.all.each do |prod| %>
+<tr class="success">
+<td><%=prod.id%></td>
+  <% Probability.all.each do |imp| %>
+<td >
+    <% @periods = Period.get_risks(prod.id,imp.value) %>
+       <% if @periods.count>0 %> 
+           <%   @periods.each do |period| %>
+               R<%= period.risk.id %>
+          <% end %>
+       <%end%>
+        </td>
+    
+ <% end %>
+   
+
+ </tr>
+
+<% end%>
+</table>

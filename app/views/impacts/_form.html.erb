@@ -1,11 +1,21 @@
-<%= simple_form_for(@impact) do |f| %>
+<%= simple_nested_form_for(@impact) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= f.input :value %>
-    <%= f.input :classification_id %>
+   
   </div>
+
+<%= f.fields_for :answer_types do |answer_type_form| %>
+  <%= answer_type_form.text_field :name %>
+  <%= answer_type_form.text_field :value %>
+
+  <%= answer_type_form.link_to_remove "Remove this period" %>
+  
+ 
+  
+<% end %>
+<p><%= f.link_to_add "Add a Answer", :answer_types%></p>
 
   <div class="form-actions">
     <%= f.button :submit %>

@@ -1,0 +1,31 @@
+<h1>Listing dams</h1>
+
+<table>
+  <tr>
+    <th>Descricao</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Radius</th>
+    <th>Basin</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dams.each do |dam| %>
+  <tr>
+    <td><%= dam.descricao %></td>
+    <td><%= dam.latitude %></td>
+    <td><%= dam.longitude %></td>
+    <td><%= dam.radius %></td>
+    <td><%= dam.basin_id %></td>
+    <td><%= link_to 'Show', dam %></td>
+    <td><%= link_to 'Edit', edit_dam_path(dam) %></td>
+    <td><%= link_to 'Destroy', dam, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Dam', new_dam_path %>

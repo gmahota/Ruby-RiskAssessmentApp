@@ -11,6 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131020130003) do
 
   create_table "bacia", :force => true do |t|
@@ -20,6 +21,33 @@ ActiveRecord::Schema.define(:version => 20131020130003) do
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
+=======
+ActiveRecord::Schema.define(:version => 20131029132741) do
+
+  create_table "answer_types", :force => true do |t|
+    t.string   "name"
+    t.integer  "value"
+    t.integer  "impact_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "answers", :force => true do |t|
+    t.integer  "period_id"
+    t.integer  "answer_type_id"
+    t.integer  "impact_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "value"
+  end
+
+  create_table "basins", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "obs"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+>>>>>>> c2feadcacd799135798a59322c9d755fc83cfc7f
   end
 
   create_table "classifications", :force => true do |t|
@@ -28,12 +56,21 @@ ActiveRecord::Schema.define(:version => 20131020130003) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "dams", :force => true do |t|
+    t.string   "descricao"
+    t.integer  "latitude"
+    t.integer  "longitude"
+    t.integer  "radius"
+    t.integer  "basin_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "impacts", :force => true do |t|
     t.string   "name"
     t.float    "value"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.integer  "classification_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "locations", :force => true do |t|
@@ -53,7 +90,6 @@ ActiveRecord::Schema.define(:version => 20131020130003) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
     t.integer  "risk_id"
-    t.integer  "impact_id"
     t.integer  "probability_id"
   end
 
@@ -78,8 +114,12 @@ ActiveRecord::Schema.define(:version => 20131020130003) do
 
   create_table "types", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "users", :force => true do |t|
