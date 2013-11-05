@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805152238) do
+ActiveRecord::Schema.define(:version => 20131020130003) do
+
+  create_table "bacia", :force => true do |t|
+    t.text     "descricao"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+  end
 
   create_table "classifications", :force => true do |t|
     t.string   "name"

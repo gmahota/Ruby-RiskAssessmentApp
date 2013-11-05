@@ -18,5 +18,4 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.fr
 //= require_tree .
-
-
+//= require openlayers-rails

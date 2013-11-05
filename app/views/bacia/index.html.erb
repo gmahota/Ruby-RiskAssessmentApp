@@ -1,0 +1,126 @@
+ <!-- OpenLayers core js -->
+        <script
+        src="http://www.openlayers.org/dev/OpenLayers.js"></script>
+        
+        <script src="http://openlayers.org/api/OpenLayers.js"></script>
+       
+        <!-- OpenStreetMap base layer js -->
+        <script
+        src="http://www.openstreetmap.org/openlayers/OpenStreetMap.js"></script>
+        <!-- Google Maps -->
+        <script src="http://maps.google.com/maps/api/js?sensor=false">
+        </script>
+
+ <script type="text/javascript">
+        function initialize() {
+            //set up projections
+            // World Geodetic System 1984 projection
+            var WGS84 = new OpenLayers.Projection("EPSG:4326");
+            
+            // WGS84 Google Mercator projection
+            var WGS84_google_mercator = new OpenLayers.Projection("EPSG:900913");
+            //Initialize the map
+            //creates a new openlayers map in the <div> html element id map
+            var map = new OpenLayers.Map ("map", {
+                controls:[
+                    //allows the user pan ability
+                    new OpenLayers.Control.Navigation(),
+                    //displays the pan/zoom tools
+                    new OpenLayers.Control.PanZoom(),
+                    //displays a layer switcher
+                    new OpenLayers.Control.LayerSwitcher(),
+                    //displays the mouse position's coordinates in a <div> html element with
+                    new OpenLayers.Control.MousePosition({
+                        div:document.getElementById("coordinates")
+                    })
+                ],
+                    projection: WGS84_google_mercator,
+                    displayProjection: WGS84
+                    
+        
+            } );
+            //base layers
+            var openstreetmap = new OpenLayers.Layer.OSM();
+            var google_maps = new OpenLayers.Layer.Google(
+                "Google Maps", {
+                    numZoomLevels: 15
+                }
+            );
+            var google_satellite = new OpenLayers.Layer.Google(
+                "Google Satellite", {
+                    type: google.maps.MapTypeId.SATELLITE,
+                    numZoomLevels: 15
+                }
+            );
+            //wfs overlay
+            var wfs_layer = new OpenLayers.Layer.Vector("Blocks", {
+                strategies: [new OpenLayers.Strategy.BBOX()],
+                projection: WGS84,
+                protocol: new OpenLayers.Protocol.WFS({
+                    version: "1.1.0",
+                    url: "http://hazardmapping.com/geoserver/wfs",
+                    featureNS :  "http://www.opengeospatial.net/cite",
+                    featureType: "testblocks",
+                })
+            });
+            map.addLayers([openstreetmap, google_maps, google_satellite, wfs_layer]);
+            
+            
+            //add markers
+            var couche_markers = new OpenLayers.Layer.Markers("Markers");
+            var dimension_icon = new OpenLayers.Size(24,24);
+            var offset_icon = new OpenLayers.Pixel(-(dimension_icon.w/2), -dimension_icon.h);
+            
+            var size = new OpenLayers.Size(21,25);
+            var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+            var icon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+            lonlat=new OpenLayers.LonLat(32.582224,-25.97097).transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
+            );
+
+            var markers = new OpenLayers.Layer.Markers( "Markers" );
+            map.addLayer(markers);  
+
+
+            var mon_marker=new OpenLayers.Marker(lonlat, icon);
+            markers.addMarker(mon_marker);
+            map.addLayer(markers);
+            
+            // map extent
+            var mapextent = new OpenLayers.Bounds(-20.91040, -39.91040,-20,60).transform(WGS84, map.getProjectionObject());
+            map.zoomToExtent(mapextent);
+            
+            /*20.49731, -28.91040, 41.94263, -8.35100               -28.91040, -28.91040,41.94263,41.94263*/
+        }
+        </script>
+
+
+
+
+ <div id="maps" style="width:500px; height:500px;"></div>
+        <div id="coordinates"></div>
+
+<table>
+  <tr>
+    <th>Descricao</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bacia.each do |bacium| %>
+  <tr>
+    <td><%= bacium.descricao %></td>
+    <td><%= link_to 'Show', bacium %></td>
+    <td><%= link_to 'Edit', edit_bacium_path(bacium) %></td>
+    <td><%= link_to 'Destroy', bacium, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Bacium', new_bacium_path %>
+
+<iframe width="620" height="820" src="http://www.riversnetwork.org/OL/examples/Limpopo.html" frameborder="0" allowfullscreen></iframe><p>source :<a href="http://www.riversnetwork.org/">riversnetwork.org</a></p>
