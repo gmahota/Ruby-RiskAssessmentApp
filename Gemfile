@@ -28,12 +28,11 @@ group :assets do
 gem "openlayers-rails", "~> 0.0.3"
 gem 'gmaps4rails'
 
-#meterologia do Yahoo
-gem "yahoo_weather", "~> 1.1.1"
- 
-  
   gem 'uglifier', '>= 1.0.3'
 end
+
+#meterologia do Yahoo
+gem "yahoo_weather", "~> 1.1.1"
 
 gem 'jquery-rails'
 
