@@ -28,5 +28,4 @@
 //= require bootstrap
 
 //= require_tree .
-
-
+//= require openlayers-rails

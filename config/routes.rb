@@ -1,5 +1,7 @@
 RiskAssessmentApp::Application.routes.draw do
   
+  resources :bacia
+
   resources :dams
 
 
@@ -26,7 +28,6 @@ RiskAssessmentApp::Application.routes.draw do
    match 'risks/matrix' => 'risks#matrix', :as => :matrix_risk
 
   resources :controlers
-
 
   resources :classifications
 

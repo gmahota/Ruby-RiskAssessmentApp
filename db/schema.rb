@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131101143553) do
+=======
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20131020130003) do
+
+  create_table "bacia", :force => true do |t|
+    t.text     "descricao"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+=======
+ActiveRecord::Schema.define(:version => 20131029132741) do
+>>>>>>> d185a25cabfb864eb70e558e5732bf8dabb3a6b5
 
   create_table "answer_types", :force => true do |t|
     t.string   "name"
@@ -36,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20131101143553) do
     t.string   "obs"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+>>>>>>> c2feadcacd799135798a59322c9d755fc83cfc7f
   end
 
   create_table "classifications", :force => true do |t|
