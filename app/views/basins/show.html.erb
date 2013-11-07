@@ -520,37 +520,103 @@
       </div>
       
       <div class="tab-pane" id="meterologic">
-        <p>
-             <%= @response.title%>
-        </p>
-
-        <p>
-            <%#= @response.units.temperature%>
-
-           <img src="<%#= @response.image_url %>"><br/>
-        </p>
-         
-        <p>
-           Temperatura Actual: <%= @response.condition.temp %> º       
-        </p>
-        <p>
-            Direção do Vento  <%= @response.wind.direction%> º <%= @response.wind.direction('ESE')%>    
-           
-        </p> 
         
-        <p>
-            <%= @response.condition.code   %>    
-           
-        </p>
-        <p>
-            <%#= @response.condition.code('string') %>
-        
-        </p>
+        <div class="accordion" id="accordion2">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                Mozambique
+              </a>
+            </div>
+            <div id="collapseOne" class="accordion-body collapse in">
+              <div class="accordion-inner">
+                <p>
+                     <%= @response.title%>
+                </p>
 
-        Forecast:<br/>
-  <%= @response.forecasts[0].day %> - <%= @response.forecasts[0].text %>.  High:  <%= @response.forecasts[0].high %> Low:  <%= @response.forecasts[0].low %><br/>
-  <%= @response.forecasts[1].day %> - <%= @response.forecasts[1].text %>.  High:  <%= @response.forecasts[1].high %> Low: <%= @response.forecasts[1].low %><br/>
-  More information <a href="<%= @response.link%>">here</a>.
+                <p>
+                    <%#= @response.units.temperature%>
+
+                   <img src="<%#= @response.image_url %>"><br/>
+                </p>
+                 
+                <p>
+                   Temperatura Actual: <%= @response.condition.temp %> º       
+                </p>
+                <p>
+                    Direção do Vento  <%= @response.wind.direction%> º <%= @response.wind.direction('ESE')%>    
+                   
+                </p> 
+                
+                <p>
+                    <%= @response.condition.code   %>    
+                   
+                </p>
+                <p>
+                    <%#= @response.condition.code('string') %>
+                
+                </p>
+
+                Forecast:<br/>
+          <%= @response.forecasts[0].day %> - <%= @response.forecasts[0].text %>.  High:  <%= @response.forecasts[0].high %> º Low:  <%= @response.forecasts[0].low %> º <br/>
+          <%= @response.forecasts[1].day %> - <%= @response.forecasts[1].text %>.  High:  <%= @response.forecasts[1].high %> Low: <%= @response.forecasts[1].low %><br/>
+          More information <a href="<%= @response.link%>">here</a>.
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion3" href="#collapsetwo">
+                South Africa
+              </a>
+            </div>
+            <div id="collapsetwo" class="collapse">
+              <div class="accordion-inner">
+                <p>
+                     <%= @reponse2.title%>
+                </p>
+
+                <p>
+                    <%#= @response.units.temperature%>
+
+                   <img src="<%#= @response.image_url %>"><br/>
+                </p>
+                 
+                <p>
+                   Temperatura Actual: <%= @reponse2.condition.temp %> º       
+                </p>
+                <p>
+                    Direção do Vento  <%= @reponse2.wind.direction%> º <%= @response.wind.direction('ESE')%>    
+                   
+                </p> 
+                
+                <p>
+                    <%= @reponse2.condition.code   %>    
+                   
+                </p>
+                <p>
+                    <%#= @response.condition.code('string') %>
+                
+                </p>
+
+                Forecast:<br/>
+          <%= @reponse2.forecasts[0].day %> - <%= @reponse2.forecasts[0].text %>.  High:  <%= @reponse2.forecasts[0].high %> º Low:  <%= @reponse2.forecasts[0].low %> º <br/>
+          <%= @reponse2.forecasts[1].day %> - <%= @reponse2.forecasts[1].text %>.  High:  <%= @reponse2.forecasts[1].high %> Low: <%= @reponse2.forecasts[1].low %><br/>
+          More information <a href="<%= @response.link%>">here</a>.
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+        
 
       </div>
 

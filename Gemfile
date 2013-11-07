@@ -25,14 +25,13 @@ group :assets do
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   
   gem 'therubyracer', :platforms => :ruby
-<<<<<<< HEAD
+
   
   #gem para os mapas
 gem "openlayers-rails", "~> 0.0.3"
 gem 'gmaps4rails'
 
-=======
->>>>>>> d185a25cabfb864eb70e558e5732bf8dabb3a6b5
+
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -63,22 +62,18 @@ gem 'bootstrap-datepicker-rails'
 gem "twitter-bootstrap-rails" , github: 'seyhunak/twitter-bootstrap-rails'
 gem 'bootstrap-addons-rails'
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 #gem 'sunspot_rails'
 
 #gem para os mapas
 gem "openlayers-rails", "~> 0.0.3"
 gem 'gmaps4rails'
-=======
+
 #gem para os mapas
 gem "openlayers-rails", "~> 0.0.3"
 gem 'gmaps4rails'
 
->>>>>>> d185a25cabfb864eb70e558e5732bf8dabb3a6b5
 #gem 'sunspot_rails'
->>>>>>> c2feadcacd799135798a59322c9d755fc83cfc7f
+
 #group :production do
 #    gem 'pg', '0.12.2'
 #end
