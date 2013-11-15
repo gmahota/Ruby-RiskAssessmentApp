@@ -395,6 +395,453 @@
             markers.addMarker(mon_marker);
             map.addLayer(markers);*/
             
+            var damMarkers = new OpenLayers.Layer.Markers( "Dams" );
+                map.addLayer(damMarkers);
+
+            <% @basin.dams.each do |dam| %>
+
+             var icon<%= dam.id %> = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+            
+                
+            //var icon<%= dam.id %> = new OpenLayers.Icon('http://maps.google.com/intl/en_us/mapfiles/ms/micons/orange-dot.png', size, offset);
+
+              lonlat<%= dam.id %>=new OpenLayers.LonLat( <%= dam.longitude %> ,<%= dam.latitude %>).transform(
+                new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
+                );
+              var mon_marker<%= dam.id %> =new OpenLayers.Marker(lonlat<%= dam.id %>, icon<%= dam.id %>);
+
+              damMarkers.addMarker(mon_marker<%= dam.id %>);
+                
+            mon_marker<%= dam.id %>.events.register("click", mon_marker<%= dam.id %>, function(e){
+               popup<%= dam.id %> = new OpenLayers.Popup.FramedCloud("<%= dam.descricao %>",
+                         mon_marker<%= dam.id %>.lonlat,
+                         new OpenLayers.Size(200, 200),
+                         "<%= dam.descricao %>",
+                         null, true); 
+
+
+           map.addPopup(popup<%= dam.id %>);
+              }); 
+
+
+
+
+             
+
+            <% end %>
+            map.addLayer(damMarkers);
+              
+
+            }
+
+
+
+
+
+
+
+
+
+            if(bacia == 2 )
+            {
+
+            //set up projections
+            // World Geodetic System 1984 projection
+            var WGS84 = new OpenLayers.Projection("EPSG:4326");
+            
+            // WGS84 Google Mercator projection
+            var WGS84_google_mercator = new OpenLayers.Projection("EPSG:900913");
+            //Initialize the map
+            //creates a new openlayers map in the <div> html element id map
+            var map = new OpenLayers.Map ("map", {
+                controls:[
+                    //allows the user pan ability
+                    new OpenLayers.Control.Navigation(),
+                    //displays the pan/zoom tools
+                    new OpenLayers.Control.PanZoom(),
+                    //displays a layer switcher
+                    new OpenLayers.Control.LayerSwitcher(),
+                    //displays the mouse position's coordinates in a <div> html element with
+                    new OpenLayers.Control.MousePosition({
+                        div:document.getElementById("coordinates")
+                    })
+                ],
+                    projection: WGS84_google_mercator,
+                    displayProjection: WGS84
+                    
+        
+            } );
+            //base layers
+            var openstreetmap = new OpenLayers.Layer.OSM();
+            var google_maps = new OpenLayers.Layer.Google(
+                "Google Maps", {
+                    numZoomLevels: 13
+                }
+            );
+            var google_satellite = new OpenLayers.Layer.Google(
+                "Google Satellite", {
+                    type: google.maps.MapTypeId.SATELLITE,
+                    numZoomLevels: 13
+                }
+            );
+            //wfs overlay
+            var wfs_layer = new OpenLayers.Layer.Vector("Blocks", {
+                strategies: [new OpenLayers.Strategy.BBOX()],
+                projection: WGS84,
+                protocol: new OpenLayers.Protocol.WFS({
+                    version: "1.1.0",
+                    url: "http://hazardmapping.com/geoserver/wfs",
+                    featureNS :  "http://www.opengeospatial.net/cite",
+                    featureType: "testblocks",
+                })
+            });
+            map.addLayers([openstreetmap, google_maps, google_satellite, wfs_layer]);
+            
+            
+
+            //add markers
+            var couche_markers = new OpenLayers.Layer.Markers("Markers");
+            var dimension_icon = new OpenLayers.Size(24,24);
+            var offset_icon = new OpenLayers.Pixel(-(dimension_icon.w/2), -dimension_icon.h);
+            
+            var size = new OpenLayers.Size(21,25);
+            var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+            var icon = new OpenLayers.Icon('http://www.openlayers.org/dev/img/marker.png', size, offset);
+
+            lonlat=new OpenLayers.LonLat(30,-19).transform(
+            new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+            new OpenLayers.Projection("EPSG:900913") // to Spherical Mercator Projection
+            );
+
+            
+           
+
+            //var lonlat = new OpenLayers.LonLat(32.582224,-25.97097).transform(new OpenLayers.//Projection("EPSG:4326"),new OpenLayers.Projection("EPSG:900913"));
+            map.setCenter(lonlat);
+            map.zoomTo(6);
+
+
+            var aa = new OpenLayers.Layer.Vector("Chire Basin", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi_Chire.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+
+            aa.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ab = new OpenLayers.Layer.Vector("Chire Rivers", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi_ChireRiver.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ab.setVisibility(true);        
+            //map.addLayer(aa);
+            
+            var ac = new OpenLayers.Layer.Vector("Kafue Basin", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi_Kafue.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ac.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ad = new OpenLayers.Layer.Vector("Kafue Rivers", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi_KafueRiver.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ad.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ae = new OpenLayers.Layer.Vector("Lower Zambezi Basin", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi_LowerZambesi.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ae.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var af = new OpenLayers.Layer.Vector("Lower Zambezi Rivers", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi_LowerZambesiRiver.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            af.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ag = new OpenLayers.Layer.Vector("Luangwa Basin", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi_Luangwa.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ag.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ah = new OpenLayers.Layer.Vector("Luangwa Rivers", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi_LuangwaRiver.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ah.setVisibility(true);        
+            //map.addLayer(aa);
+
+             var ai = new OpenLayers.Layer.Vector("Middle Zambezi Basin", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi_MiddleZambesi.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ai.setVisibility(true);        
+            //map.addLayer(aa);
+
+
+            var aj = new OpenLayers.Layer.Vector("Middle Zambezi Rivers", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi_MiddleZambesiRiver.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            aj.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var ak = new OpenLayers.Layer.Vector("Upper Zambezi Basin", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi_UpperZambesi.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ak.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var al = new OpenLayers.Layer.Vector("Upper Zambezi Rivers", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi_UpperZambesiRiver.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            al.setVisibility(true);        
+            //map.addLayer(aa);
+
+            var am = new OpenLayers.Layer.Vector("Zambezi Water areas", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/ZambesiWetland.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            am.setVisibility(true);        
+            //map.addLayer(aa);
+      
+
+            var ao = new OpenLayers.Layer.Vector("Zambezi Sub-Basins", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambezi.km",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+            ao.setVisibility(true);        
+            //map.addLayer(aa);
+
+
+            var ma = new OpenLayers.Layer.Vector("Zambia", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zambia.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+
+           var mb = new OpenLayers.Layer.Vector("Zimbabwe", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Zimbabwe.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+
+            
+            var mc = new OpenLayers.Layer.Vector("Mozambique", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Mozambique.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+
+            var md = new OpenLayers.Layer.Vector("Botswana", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Botswana.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+
+            var me = new OpenLayers.Layer.Vector("Tanzania", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Tanzania.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+
+            var mf = new OpenLayers.Layer.Vector("Angola", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Angola.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+
+            var mg = new OpenLayers.Layer.Vector("Malawi", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Malawi.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+
+            var mh = new OpenLayers.Layer.Vector("Namibia", {
+                projection: map.displayProjection,
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                protocol: new OpenLayers.Protocol.HTTP({
+                    url: "/assets/Namibia.kml",
+                    format: new OpenLayers.Format.KML({
+                        extractStyles: true, 
+                        extractAttributes: true,
+                    })
+                })
+            });
+
+                ma.setVisibility(false);
+                mb.setVisibility(false);
+                    mc.setVisibility(true);
+                md.setVisibility(false);
+                me.setVisibility(false);
+                mf.setVisibility(false);
+                mg.setVisibility(false);
+                mh.setVisibility(false);
+
+                
+
+
+
+                map.addLayers([aa,ab,ac,ad,ae,af,ag,ah,ai,aj,ak,al,am,ao,ma,mb,mc,md,mf,me,mg,mh]);
+                
+                /*var markers = new OpenLayers.Layer.Markers( "Markers" );
+            map.addLayer(markers);  
+
+            var mon_marker=new OpenLayers.Marker(lonlat, icon);
+
+            markers.addMarker(mon_marker);
+            map.addLayer(markers);*/
+            
             var damMarkers = new OpenLayers.Layer.Markers( "Dams %>" );
                 map.addLayer(damMarkers);
 
@@ -434,6 +881,20 @@
               
 
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
         </script>
 
@@ -458,7 +919,7 @@
         
 
         <div style='width: 600px;'>
-          <div id="map" style="width:500px; height:800px;"></div>
+          <div id="map" style="width:600px; height:800px;"></div>
         </div>
   
       </div>
